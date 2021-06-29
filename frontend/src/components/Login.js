@@ -1,9 +1,19 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 function Login()
 {
 
-    const app_name = 'cop4331-10'
+    var bp = require('./Path.js');
+    var storage = require('../tokenStorage.js');
+
+    var loginName;
+    var loginPassword;
+
+    const [message,setMessage] = useState('');
+
+    const app_name = 'dndpagemaker'
+
     function buildPath(route)
     {
         if (process.env.NODE_ENV === 'production') 
@@ -15,11 +25,7 @@ function Login()
             return 'http://localhost:5000/' + route;
         }
     }
-    
-    var loginName;
-    var loginPassword;
 
-    const [message,setMessage] = useState('');
 
     const doLogin = async event => 
     {
@@ -28,32 +34,45 @@ function Login()
         var obj = {login:loginName.value,password:loginPassword.value};
         var js = JSON.stringify(obj);
 
-        try
-        {    
-            const response = await fetch(buildPath('api/login'),
-                {method:'POST',body:js,headers:{'Content-Type': 'application/json'}});
+        var config = 
+        {
+            method: 'post',
+            url: buildPath('api/login'),	
+            headers: 
+            {
+                'Content-Type': 'application/json'
+            },
+            data: js
+        };
 
-            var res = JSON.parse(await response.text());
-
-            if( res.id <= 0 )
+        axios(config)
+            .then(function (response) 
+        {
+            var res = response.data;
+            if (res.error) 
             {
                 setMessage('User/Password combination incorrect');
             }
-            else
-            {
-                var user = {firstName:res.firstName,lastName:res.lastName,id:res.id}
+            else 
+            {	
+                storage.storeToken(res);
+                var jwt = require('jsonwebtoken');
+    
+                var ud = jwt.decode(storage.retrieveToken(),{complete:true});
+                var userId = ud.payload.userId;
+                var firstName = ud.payload.firstName;
+                var lastName = ud.payload.lastName;
+                  
+                var user = {firstName:firstName,lastName:lastName,id:userId}
                 localStorage.setItem('user_data', JSON.stringify(user));
-
-                setMessage('');
                 window.location.href = '/cards';
             }
-        }
-        catch(e)
+        })
+        .catch(function (error) 
         {
-            alert(e.toString());
-            return;
-        }    
-    };
+            console.log(error);
+        });
+    }
 
     return(
       <div id="loginDiv">
