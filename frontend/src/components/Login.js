@@ -18,6 +18,7 @@ function Login()
     {
         if (process.env.NODE_ENV === 'production') 
         {
+            console.log("yo");
             return 'https://' + app_name +  '.herokuapp.com/' + route;
         }
         else
