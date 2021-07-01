@@ -156,7 +156,7 @@ function CardUI()
     {
       return(
         <div id="loggedInDiv">
-        <span>NOT LOGGED IN, go back and log in</span>
+        
         </div>
       );
     }
