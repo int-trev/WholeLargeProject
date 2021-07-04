@@ -1,0 +1,28 @@
+.blue
+{
+    color: blue;
+}
+
+.brown
+{
+    background-color: peru;
+}
+
+.background
+{
+    background-image: url(https://wallpapercave.com/wp/iJ4nc1L.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    height: 1000px;
+}
+
+.another
+{
+    margin: auto;
+    width: 50%;
+}
+
+#title
+{
+    text-align: center;
+}

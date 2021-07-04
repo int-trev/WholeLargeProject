@@ -37,9 +37,10 @@ function LandingPageUI()
 
     return(
         <div id="landingPageDiv">
-        <br />
-        <h2>HELLO</h2>
-        </div>
+            <br />
+            <input type="text" id="searchText" placeholder="Card To Search For" 
+                ref={(c) => search = c} />
+            </div>
     );
 }
 
