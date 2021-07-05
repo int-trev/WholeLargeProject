@@ -5,6 +5,11 @@ import PageTitle from '../components/PageTitle';
 import Login from '../components/Login';
 import Scroll from '../components/Scroll'
 
+function getAbout()
+{
+  window.location.href = '/about';
+}
+
 const LoginPage = () =>
 {
 
@@ -16,6 +21,9 @@ const LoginPage = () =>
           <div class = "another">
             <Login />
           </div>
+          <h1>About Us</h1>
+          <input type="submit" id="loginButton" class="buttons" value = "Do It"
+          onClick={getAbout} />
         </div>
       </div>
     );
