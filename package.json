@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "concurrently \"npm run server\" \"cd frontend && npm start\"",
-    "server": "nodemon app.js",
+    "server": "node app.js",
     "heroku-postbuild": " NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
   },
   "author": "",
@@ -18,8 +18,5 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.9"
-  },
-  "engines": {
-    "node":"14.17.1"
   }
 }

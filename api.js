@@ -7,7 +7,7 @@ exports.setApp = function ( app, client )
   {
       // incoming: login, password
       // outgoing: id, firstName, lastName, error
-    
+      console.log("HIT HERE");
      var error = '';
     
       const { login, password } = req.body;
