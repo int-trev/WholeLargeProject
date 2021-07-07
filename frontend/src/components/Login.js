@@ -12,24 +12,6 @@ function Login()
 
     const [message,setMessage] = useState('');
 
-    const app_name = 'dndpagemaker'
-
-    function buildPath(route)
-    {
-        return 'https://' + app_name +  '.herokuapp.com/' + route;
-        /*
-        if (process.env.NODE_ENV === 'production') 
-        {
-            return 'https://' + app_name +  '.herokuapp.com/' + route;
-        }
-        else
-        {        
-            return 'http://localhost:5000/' + route;
-        }
-        */
-    }
-
-
     const doLogin = async event => 
     {
         event.preventDefault();
@@ -40,7 +22,7 @@ function Login()
         var config = 
         {
             method: 'post',
-            url: buildPath('api/login'),	
+            url: bp.buildPath('api/login'),	
             headers: 
             {
                 'Content-Type': 'application/json'

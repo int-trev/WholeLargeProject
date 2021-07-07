@@ -1,4 +1,4 @@
-const app_name = 'cop4331-10'
+const app_name = 'dndpagemaker'
 exports.buildPath = 
 function buildPath(route)
 {

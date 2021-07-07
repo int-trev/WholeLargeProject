@@ -24,19 +24,6 @@ function CardUI()
         var lastName = ud.lastName;
     }
 
-    const app_name = 'cop4331-4'
-    function buildPath(route)
-    {
-        if (process.env.NODE_ENV === 'production') 
-        {
-            return 'https://' + app_name +  '.herokuapp.com/' + route;
-        }
-        else
-        {        
-            return 'http://localhost:5000/' + route;
-        }
-    }
-
 	
     const addCard = async event => 
     {
@@ -49,7 +36,7 @@ function CardUI()
         var config = 
         {
             method: 'post',
-            url: buildPath('api/addcard'),	
+            url: bp.buildPath('api/addcard'),	
             headers: 
             {
                 'Content-Type': 'application/json'
@@ -91,7 +78,7 @@ function CardUI()
         var config = 
         {
             method: 'post',
-            url: buildPath('api/searchcards'),	
+            url: bp.buildPath('api/searchcards'),	
             headers: 
             {
                 'Content-Type': 'application/json'

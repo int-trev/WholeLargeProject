@@ -21,19 +21,6 @@ function LandingPageUI()
     var firstName = ud.firstName;
     var lastName = ud.lastName;
 
-    const app_name = 'dndpagemaker'
-    function buildPath(route)
-    {
-        if (process.env.NODE_ENV === 'production') 
-        {
-            return 'https://' + app_name +  '.herokuapp.com/' + route;
-        }
-        else
-        {        
-            return 'http://localhost:5000/' + route;
-        }
-    }
-
     const searchCard = async event => 
     {
         event.preventDefault();
@@ -45,7 +32,7 @@ function LandingPageUI()
         var config = 
         {
             method: 'post',
-            url: buildPath('api/searchcards'),	
+            url: bp.buildPath('api/searchcards'),	
             headers: 
             {
                 'Content-Type': 'application/json'
