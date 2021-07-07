@@ -6,7 +6,8 @@
   "scripts": {
     "start": "concurrently \"npm run server\" \"cd frontend && npm start\"",
     "server": "nodemon server.js",
-    "heroku-postbuild": " NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend && npm run server"
+    "other": "node server.js",
+    "heroku-postbuild": " NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend && npm run other"
   },
   "author": "",
   "license": "ISC",
