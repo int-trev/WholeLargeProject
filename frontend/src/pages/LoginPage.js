@@ -17,8 +17,8 @@ const LoginPage = () =>
       <div>
         <Scroll />
         <PageTitle />
-        <div class = "background">
-          <div class = "another">
+        <div className = "background">
+          <div className = "another">
             <Login />
           </div>
           <h1>About Us</h1>
