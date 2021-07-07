@@ -9,8 +9,7 @@ function buildPath(route)
     }
     else
     {        
-        //return 'http://localhost:5000/' + route;
-        return 'https://' + app_name +  '.herokuapp.com/' + route;
+        return 'http://localhost:5000/' + route;
     }
 }
 
