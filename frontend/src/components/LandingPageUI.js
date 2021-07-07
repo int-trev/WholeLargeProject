@@ -21,58 +21,6 @@ function LandingPageUI()
     var firstName = ud.firstName;
     var lastName = ud.lastName;
 
-    const searchCard = async event => 
-    {
-        event.preventDefault();
-        		
-        var tok = storage.retrieveToken();
-        var obj = {userId:userId,search:search.value,jwtToken:tok};
-        var js = JSON.stringify(obj);
-
-        var config = 
-        {
-            method: 'post',
-            url: bp.buildPath('api/searchcards'),	
-            headers: 
-            {
-                'Content-Type': 'application/json'
-            },
-            data: js
-        };
-    
-        axios(config)
-            .then(function (response) 
-        {
-            var res = response.data;
-            var retTok = res.jwtToken;
-    
-            if( res.error.length > 0 )
-            {
-                setMessage( "API Error:" + res.error );
-            }
-            else
-            {
-                var _results = res.results;
-                var resultText = '';
-                for( var i=0; i<_results.length; i++ )
-                {
-                    resultText += _results[i];
-                    if( i < _results.length - 1 )
-                    {
-                        resultText += ', ';
-                    }
-                }
-                setResults('Card(s) have been retrieved');
-                setCardList(resultText);
-                storage.storeToken( {accessToken:retTok} );
-            }
-        })
-        .catch(function (error) 
-        {
-            console.log(error);
-        });
-
-    };
 
 
     return(
@@ -80,8 +28,6 @@ function LandingPageUI()
             <br />
             <input type="text" id="searchText" placeholder="Card To Search For" 
                 ref={(c) => search = c} />
-            <button type="button" id="searchCardButton" class="buttons" 
-                onClick={searchCard}> Search Character Sheets</button><br />
             <span id="cardSearchResult">{searchResults}</span>
             </div>
     );
