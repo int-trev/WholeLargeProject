@@ -14,6 +14,7 @@ app.use(bodyParser.json());
 
 require('dotenv').config();
 const url = process.env.MONGODB_URI;
+console.log(url);
 const MongoClient = require('mongodb').MongoClient;
 const client = new MongoClient(url);
 client.connect();
