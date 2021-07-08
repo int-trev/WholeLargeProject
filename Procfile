@@ -1,1 +1,1 @@
-web: node server.js
+web: node server.js && npm install --prefix frontend && npm run build --prefix frontend
