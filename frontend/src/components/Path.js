@@ -2,7 +2,7 @@ const app_name = 'dndpagemaker'
 exports.buildPath = 
 function buildPath(route)
 {
-    console.log(process.env.NODE_ENV);
+    console.log(process.env.MONGODB_URI);
     if (process.env.NODE_ENV === 'production') 
     {
         return 'https://' + app_name +  '.herokuapp.com/' + route;
