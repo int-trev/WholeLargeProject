@@ -284,7 +284,6 @@ app.post('/api/addUser', async (req, res, next) =>
                 }
              })
 
-    
             });
 
             app.post('/api/login', async (req, res, next) => 
