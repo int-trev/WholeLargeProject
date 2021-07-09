@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+
+function getAbout()
+{
+  window.location.href = '/createcharacterpage';
+}
+
+
 function LandingPageUI()
 {
 
@@ -29,7 +36,9 @@ function LandingPageUI()
             <input type="text" id="searchText" placeholder="Card To Search For" 
                 ref={(c) => search = c} />
             <span id="cardSearchResult">{searchResults}</span>
-            </div>
+            <input type="submit" id="loginButton" class="buttons" value = "Do It"
+             onClick={getAbout} />
+        </div>
     );
 }
 

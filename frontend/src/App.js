@@ -6,6 +6,8 @@ import LoginPage from './pages/LoginPage';
 import CardPage from './pages/CardPage';
 import LandingPage from './pages/LandingPage';
 import AboutUs from './pages/AboutUs';
+import CreateCharacterPage from './pages/CreateChar';
+
 
 function App() {
   return (
@@ -26,6 +28,11 @@ function App() {
         <Route path = "/about" exact>
           <AboutUs />
         </Route>
+
+        <Route path = "/createcharacterpage" exact>
+          <CreateCharacterPage />
+        </Route>
+
         <Redirect to="/" />
       </Switch>  
     </Router>
