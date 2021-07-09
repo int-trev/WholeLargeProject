@@ -20,20 +20,17 @@ function CreateCharacterUI()
 
     var characterName = '';
 
-
+    // class
     var class1 = '';
     var class1Lvl = '';
     var class2 = '';
     var class2Lvl = '';
     var class3 = '';
     var class3Lvl = '';
-
-    //character
-    var backGround = '';
-    var race = '';
-    var alignment = '';
-
     var exp = '';
+
+    // Character
+    var alignment = '';
     var acrobatics = '';
     var animalHandling = ''; 
     var arcana = ''; 
@@ -48,12 +45,12 @@ function CreateCharacterUI()
     var perception = ''; 
     var performance = ''; 
     var persuasion = ''; 
-    var  religion = '';
+    var religion = '';
     var sleightOfhand = ''; 
     var stealth = ''; 
     var survival = ''; 
     
-    //Abilities
+    // abilities
     var str = ''; 
     var dex = ''; 
     var con = ''; 
@@ -66,13 +63,13 @@ function CreateCharacterUI()
     var wisSave = ''; 
     var chaSave = ''; 
 
-
+    // Combat traits
     var armorClass = ''; 
     var initiative = ''; 
     var speed = ''; 
     var maxHP = '';
     var current = ''; 
-    var  hitDice = ''; 
+    var hitDice = ''; 
     var attack1Name = ''; 
     var attack1Bonus  = '';
     var attack1Type = ''; 
@@ -86,14 +83,16 @@ function CreateCharacterUI()
     var passivePerception = ''; 
     var profLanguages = ''; 
     
-    //currency
-    var cp = ''; //cooper
-    var sp = ''; //siler piece
-    var ep = '';  //electrum piece
-    var gp = ''; //gold
-    var pp = '';    //platinum piece
+    // currency
+    var cp = ''; // copper
+    var sp = ''; // silver piece
+    var ep = ''; // electrum piece
+    var gp = ''; // gold
+    var pp = ''; // platinum piece
     
-    
+    // physical appearance
+    var backGround = '';
+    var race = '';
     var equipment = ''; 
     var featTraits = ''; 
     var age = ''; 
@@ -109,7 +108,7 @@ function CreateCharacterUI()
     var addfeatTraits = ''; 
     var treasure = '';
 
-    //Spells
+    // spells
     var spellClass = ''; 
     var spellAbility = ''; 
     var spellsaveDC = ''; 
@@ -162,23 +161,38 @@ function CreateCharacterUI()
             <input type="text" id="searchText" placeholder="Character Name" 
                 ref={(c) => characterName = c} />
             <br />
-            <h2>Classes</h2>
-            <p>Class 1</p>
-            <input type="text" id="searchText" placeholder="Class 1" 
-                ref={(c) => class1 = c} />
-            <br />
-            <p>Class 1 Level</p>
-            <input type="text" id="searchText" placeholder="Class 1 Level" 
-                ref={(c) => class1Lvl = c} />
-            <br />
-            <p>Class 2</p>
-            <input type="text" id="searchText" placeholder="Class 2" 
-                ref={(c) => class2 = c} />
-            <br />
-            <p>Class 2 Level</p>
-            <input type="text" id="searchText" placeholder="Class 2" 
-                ref={(c) => class2Lvl = c} />
-            <br />
+            <div>
+                <h2>Classes</h2>
+                    <p>Class 1</p>
+                    <input type="text" id="searchText" placeholder="Class 1" 
+                        ref={(c) => class1 = c} />
+                    <br />
+                    <p>Class 1 Level</p>
+                    <input type="text" id="searchText" placeholder="Class 1 Level" 
+                        ref={(c) => class1Lvl = c} />
+                    <br />
+                    <p>Class 2</p>
+                    <input type="text" id="searchText" placeholder="Class 2" 
+                        ref={(c) => class2 = c} />
+                    <br />
+                    <p>Class 2 Level</p>
+                    <input type="text" id="searchText" placeholder="Class 2 Level"  
+                        ref={(c) => class2Lvl = c} />
+                    <br />
+                    <p>Class 3</p>
+                    <input type="text" id="searchText" placeholder="Class 3" 
+                        ref={(c) => class3 = c} />
+                    <br />
+                    <p>Class 3 Level</p>
+                    <input type="text" id="searchText" placeholder="Class 3 Level" 
+                        ref={(c) => class3Lvl = c} />
+                    <br />
+                    <p>Exp</p>
+                    <input type="text" id="searchText" placeholder="Exp" 
+                        ref={(c) => exp = c} />
+                    <br />
+            </div>
+
 
             
             

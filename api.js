@@ -221,7 +221,7 @@ exports.setApp = function ( app, client )
       res.status(200).json(ret);
     });
 
-    
+    // Done
     app.post('/api/addUser', async (req, res, next) =>
     {  
         // incoming: userName, passWord  
@@ -256,7 +256,7 @@ exports.setApp = function ( app, client )
           
     });
           
-
+    // Done
     app.post('/api/login', async (req, res, next) => 
     {
       // incoming: login, password
