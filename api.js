@@ -2,149 +2,6 @@ var token = require('./createJWT.js');
 
 exports.setApp = function ( app, client )
 {
-
-    app.post('/api/addcard', async (req, res, next) =>
-    {
-      // incoming: userId, color
-      // outgoing: error
-        
-      const { userId, card, jwtToken } = req.body;
-
-      try
-      {
-        if( token.isExpired(jwtToken))
-        {
-          var r = {error:'The JWT is no longer valid', jwtToken: ''};
-          res.status(200).json(r);
-          return;
-        }
-      }
-      catch(e)
-      {
-        console.log(e.message);
-      }
-    
-      const newCard = {Card:card,UserId:userId};
-      var error = '';
-    
-      try
-      {
-        const db = client.db();
-        const result = db.collection('Cards').insertOne(newCard);
-      }
-      catch(e)
-      {
-        error = e.toString();
-      }
-    
-      var refreshedToken = null;
-      try
-      {
-        refreshedToken = token.refresh(jwtToken).accessToken;
-      }
-      catch(e)
-      {
-        console.log(e.message);
-      }
-    
-      var ret = { error: error, jwtToken: refreshedToken };
-      
-      res.status(200).json(ret);
-    });
-    
-    app.post('/api/login', async (req, res, next) => 
-    {
-      // incoming: login, password
-      // outgoing: id, firstName, lastName, error
-      const aaaa = process.env.MONGODB_URI;
-      console.log(aaaa);
-    
-     var error = '';
-    
-      const { login, password } = req.body;
-    
-      const db = client.db();
-      const results = await db.collection('Users').find({Login:login,Password:password}).toArray();
-    
-      var id = -1;
-      var fn = '';
-      var ln = '';
-
-      var ret;
-    
-      if( results.length > 0 )
-      {
-        id = results[0].UserId;
-        fn = results[0].FirstName;
-        ln = results[0].LastName;
-
-        try
-        {
-          const token = require("./createJWT.js");
-          ret = token.createToken( fn, ln, id );
-        }
-        catch(e)
-        {
-          ret = {error:e.message};
-        }
-      }
-      else
-      {
-          ret = {error:"Login/Password incorrect"};
-      }
-    
-      res.status(200).json(ret);
-    });
-    
-    app.post('/api/searchcards', async (req, res, next) => 
-    {
-      // incoming: userId, search
-      // outgoing: results[], error
-    
-      var error = '';
-    
-      const { userId, search, jwtToken } = req.body;
-
-      try
-      {
-        if( token.isExpired(jwtToken))
-        {
-          var r = {error:'The JWT is no longer valid', jwtToken: ''};
-          res.status(200).json(r);
-          return;
-        }
-      }
-      catch(e)
-      {
-        console.log(e.message);
-      }
-      
-      var _search = search.trim();
-      
-      const db = client.db();
-      const results = await db.collection('Cards').find({"Card":{$regex:_search+'.*', $options:'r'}}).toArray();
-      
-      var _ret = [];
-      for( var i=0; i<results.length; i++ )
-      {
-        _ret.push( results[i].Card );
-      }
-      
-      var refreshedToken = null;
-      try
-      {
-        refreshedToken = token.refresh(jwtToken).accessToken;
-      }
-      catch(e)
-      {
-        console.log(e.message);
-      }
-    
-      var ret = { results:_ret, error: error, jwtToken: refreshedToken };
-      
-      res.status(200).json(ret);
-    });
-
     app.post('/api/addDnD', async (req, res, next) =>
     {
       // incoming: userId, color
@@ -287,7 +144,6 @@ exports.setApp = function ( app, client )
         lvl9Spellslots:lvl9Spellslots, 
         lvl9Prepspells:lvl9Prepspells, 
         lvl9Expendedlvl9:lvl9Expended,
-
       };
       var error = '';
     
@@ -364,5 +220,69 @@ exports.setApp = function ( app, client )
       
       res.status(200).json(ret);
     });
+
+    
+app.post('/api/addUser', async (req, res, next) =>
+{  
+    // incoming: userName, passWord  
+    // outgoing: error  
+    var error = '';  
+
+    try
+    {
+      if( token.isExpired(jwtToken))
+      {
+        var r = {error:'The JWT is no longer valid', jwtToken: ''};
+        res.status(200).json(r);
+        return;
+      }
+    }
+    catch(e)
+    {
+      console.log(e.message);
+    }
+    
+    const { username, password } = req.body;  
+    const newUser = {userName:username,passWord:password,verification:false };
+    const db = client.db();
+
+    db.collection("Users").findOne({newUser}, function(err, result) {
+        if (err) {
+            var ret = { error: error };  
+            res.status(200).json(ret);
+            }
+        if (result) {
+            let copy  = "Duplicate username and/or password detected";   
+            res.status(200).json(copy);
+        } else {
+            try  {        
+                    const result = db.collection('Users').insertOne(newUser);  
+                }  
+            catch(e) {    
+                        error = e.toString();  
+                    }
+    
+                    // TEMP FOR LOCAL TESTING.  
+   
+                    var refreshedToken = null;
+                    try
+                    {
+                      refreshedToken = token.refresh(jwtToken);
+                    }
+                    catch(e)
+                    {
+                      console.log(e.message);
+                    }
+                  
+                    var ret = { error: error, jwtToken: refreshedToken };
+                    
+                    res.status(200).json(ret);
+                      
+            
+                }
+             })
+
+    
+            });
     
 }

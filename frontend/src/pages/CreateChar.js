@@ -4,6 +4,7 @@ import './LandingPageCSS.css';
 import PageTitle from '../components/PageTitle';
 import LoggedInName from '../components/LoggedInName';
 import Scroll from '../components/Scroll'
+import Create from '../components/CreateCharacterUI'
 
 const CreateChar = () =>
 {
@@ -12,7 +13,7 @@ const CreateChar = () =>
             <Scroll />
             <PageTitle />
             <LoggedInName />
-            <p>hello good sir</p>
+            <Create />
         </div>
     );
 }

@@ -6,7 +6,7 @@
   "scripts": {
     "start": "concurrently \"npm run server\" \"cd frontend && npm start\"",
     "server": "nodemon server.js",
-    "other": "node server.js",
+    "other": "nodemon server.js",
     "heroku-postbuild": " NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
   },
   "author": "",
