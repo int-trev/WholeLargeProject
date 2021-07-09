@@ -228,7 +228,7 @@ app.post('/api/addUser', async (req, res, next) =>
     // outgoing: error  
     var error = '';  
 
-    try
+    /*try
     {
       if( token.isExpired(jwtToken))
       {
@@ -240,7 +240,7 @@ app.post('/api/addUser', async (req, res, next) =>
     catch(e)
     {
       console.log(e.message);
-    }
+    }*/
     
     const { username, password } = req.body;  
     const newUser = {userName:username,passWord:password,verification:false };
@@ -256,7 +256,9 @@ app.post('/api/addUser', async (req, res, next) =>
             res.status(200).json(copy);
         } else {
             try  {        
-                    const result = db.collection('Users').insertOne(newUser);  
+                    const result = db.collection('Users').insertOne(newUser);
+                    var ret = { error: "none",};
+                    res.status(200).json(ret)
                 }  
             catch(e) {    
                         error = e.toString();  
@@ -264,7 +266,7 @@ app.post('/api/addUser', async (req, res, next) =>
     
                     // TEMP FOR LOCAL TESTING.  
    
-                    var refreshedToken = null;
+                    /*var refreshedToken = null;
                     try
                     {
                       refreshedToken = token.refresh(jwtToken);
@@ -272,9 +274,9 @@ app.post('/api/addUser', async (req, res, next) =>
                     catch(e)
                     {
                       console.log(e.message);
-                    }
+                    }*/
                   
-                    var ret = { error: error, jwtToken: refreshedToken };
+                    var ret = { error: error,};
                     
                     res.status(200).json(ret);
                       
