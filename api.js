@@ -222,69 +222,40 @@ exports.setApp = function ( app, client )
     });
 
     
-app.post('/api/addUser', async (req, res, next) =>
-{  
-    // incoming: userName, passWord  
-    // outgoing: error  
-    var error = '';  
+    app.post('/api/addUser', async (req, res, next) =>
+    {  
+        // incoming: userName, passWord  
+        // outgoing: error  
+        var error = '';  
+        
+        const { username, password } = req.body;  
+        const newUser = {userName:username,passWord:password,verification:false };
+        const db = client.db();
 
-    /*try
-    {
-      if( token.isExpired(jwtToken))
-      {
-        var r = {error:'The JWT is no longer valid', jwtToken: ''};
-        res.status(200).json(r);
-        return;
-      }
-    }
-    catch(e)
-    {
-      console.log(e.message);
-    }*/
-    
-    const { username, password } = req.body;  
-    const newUser = {userName:username,passWord:password,verification:false };
-    const db = client.db();
-
-    db.collection("Users").findOne({newUser}, function(err, result) {
-        if (err) {
-            var ret = { error: error };  
-            res.status(200).json(ret);
+        const results = await db.collection('Users').find({Login:username}).toArray();
+        if(results == 0)
+        {
+          //do regular code
+          try {        
+            const result = await db.collection('Users').insertOne(newUser);
+            error = "none";
+            }  
+          catch(e)
+            {    
+                error = e.toString();  
             }
-        if (result) {
-            let copy  = "Duplicate username and/or password detected";   
-            res.status(200).json(copy);
-        } else {
-            try  {        
-                    const result = db.collection('Users').insertOne(newUser);
-                    var ret = { error: "none",};
-                    res.status(200).json(ret)
-                }  
-            catch(e) {    
-                        error = e.toString();  
-                    }
-    
-                    // TEMP FOR LOCAL TESTING.  
-   
-                    /*var refreshedToken = null;
-                    try
-                    {
-                      refreshedToken = token.refresh(jwtToken);
-                    }
-                    catch(e)
-                    {
-                      console.log(e.message);
-                    }*/
-                  
-                    var ret = { error: error,};
-                    
-                    res.status(200).json(ret);
-                      
-            
-                }
-             })
 
-            });
+            var ret = { error: error,};
+            res.status(200).json(ret);
+        }
+        else
+        {
+          var ret = { error: "Duplicate username and/or password detected" };  
+          res.status(200).json(ret);
+        }
+          
+    });
+          
 
             app.post('/api/login', async (req, res, next) => 
             {
