@@ -1,6 +1,21 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+const newUser = {
+    ray:[
+        {
+            Login:"hi",Password:"pass",verification:"hello" 
+        },
+        {
+            Login:"hey",Password:"pass",verification:"hello" 
+        }
+    ]
+};
+
+const resultList = newUser.ray.map((obj) =>
+<li>{obj.Login}</li>
+);
+
 
 function getAbout()
 {
@@ -28,6 +43,56 @@ function LandingPageUI()
     var firstName = ud.firstName;
     var lastName = ud.lastName;
 
+    const searchCard = async event => 
+    {
+        event.preventDefault();
+        		
+        var tok = storage.retrieveToken();
+        var obj = {userId:userId,search:search.value,jwtToken:tok};
+        var js = JSON.stringify(obj);
+
+        var config = 
+        {
+            method: 'post',
+            url: bp.buildPath('api/searchDnD'),	
+            headers: 
+            {
+                'Content-Type': 'application/json'
+            },
+            data: js
+        };
+    
+        axios(config)
+            .then(function (response) 
+        {
+            var res = response.data;
+            var retTok = res.jwtToken;
+    
+            if( res.error.length > 0 )
+            {
+                setMessage( "API Error:" + res.error );
+            }
+            else
+            {
+                var _results = res.results;
+                var resultText = '';
+                resultList = _results.map((obj) =>
+                <li>{obj.characterName}</li>
+                );
+                
+                setResults('Card(s) have been retrieved');
+
+                setCardList(resultText);
+                storage.storeToken( {accessToken:retTok} );
+            }
+        })
+        .catch(function (error) 
+        {
+            console.log(error);
+        });
+
+    };
+
 
 
     return(
@@ -38,6 +103,11 @@ function LandingPageUI()
             <span id="cardSearchResult">{searchResults}</span>
             <input type="submit" id="loginButton" class="buttons" value = "Do It"
              onClick={getAbout} />
+             <div id="component">
+                <ul>
+                    <span>{resultList}</span>
+                </ul>
+             </div>
         </div>
     );
 }
