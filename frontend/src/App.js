@@ -7,6 +7,7 @@ import CardPage from './pages/CardPage';
 import LandingPage from './pages/LandingPage';
 import AboutUs from './pages/AboutUs';
 import CreateCharacterPage from './pages/CreateChar';
+import Register from './pages/Register';
 
 
 function App() {
@@ -31,6 +32,10 @@ function App() {
 
         <Route path = "/createcharacterpage" exact>
           <CreateCharacterPage />
+        </Route>
+
+        <Route path = "/register" exact>
+          <Register />
         </Route>
 
         <Redirect to="/" />

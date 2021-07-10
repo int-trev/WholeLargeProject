@@ -16,7 +16,7 @@ require('dotenv').config();
 const url = process.env.MONGODB_URI;
 console.log(url);
 const MongoClient = require('mongodb').MongoClient;
-const client = new MongoClient("mongodb+srv://jzach:apple22@cluster0.qvf6x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
+const client = new MongoClient(url);
 client.connect();
 
 var api = require('./api.js');
