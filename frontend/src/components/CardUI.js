@@ -30,8 +30,8 @@ function CardUI()
 	    event.preventDefault();
 
         var tok = storage.retrieveToken();
-       var obj = {userId:userId,card:card.value,jwtToken:tok};
-       var js = JSON.stringify(obj);
+        var obj = {userId:userId,card:card.value,jwtToken:tok};
+        var js = JSON.stringify(obj);
 
         var config = 
         {

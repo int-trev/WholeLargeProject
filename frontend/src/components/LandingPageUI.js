@@ -12,8 +12,13 @@ const newUser = {
     ]
 };
 
+
 const resultList = newUser.ray.map((obj) =>
-<li>{obj.Login}</li>
+<div>
+    <p>{obj.Login}</p>
+    <input type="submit" id="loginButton" class="buttons" value = "Do It"/>
+    <ViewComp name = {obj.Password}/>
+</div>
 );
 
 
@@ -93,7 +98,9 @@ function LandingPageUI()
 
     };
 
-
+    // document.getElementById("idName").style.display("none");
+    // edit the ids, maybe add a hash 
+    // 
 
     return(
         <div id="landingPageDiv">
@@ -104,12 +111,17 @@ function LandingPageUI()
             <input type="submit" id="loginButton" class="buttons" value = "Do It"
              onClick={getAbout} />
              <div id="component">
-                <ul>
                     <span>{resultList}</span>
-                </ul>
              </div>
         </div>
     );
 }
+
+function ViewComp(props) {
+   
+    return <h1>{props.name}</h1>;
+  }
+
+
 
 export default LandingPageUI;

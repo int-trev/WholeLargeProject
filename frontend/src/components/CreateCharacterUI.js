@@ -14,6 +14,7 @@ function CreateCharacterUI()
     var bp = require('./Path.js');
     var storage = require('../tokenStorage.js');
     const jwt = require("jsonwebtoken");
+
     
     var userName = '';
     var userId = '';
@@ -157,10 +158,12 @@ function CreateCharacterUI()
     return(
         <div id="landingPageDiv">
             <br />
-            <p>Character Name</p>
-            <input type="text" id="searchText" placeholder="Character Name" 
-                ref={(c) => characterName = c} />
-            <br />
+            <div>
+                <p>Character Name</p>
+                <input type="text" id="searchText" placeholder="Character Name" 
+                    ref={(c) => characterName = c} />
+                <br />
+            </div>
             <div>
                 <h2>Classes</h2>
                     <p>Class 1</p>
@@ -192,13 +195,18 @@ function CreateCharacterUI()
                         ref={(c) => exp = c} />
                     <br />
             </div>
+            <div>
+                <h2>Character</h2>
+                    <p>Alignment</p>
+                    <input type="text" id="searchText" placeholder="Alignment" 
+                        ref={(c) => alignment = c} />
+                    <br />
 
-
-            
-            
-            
+            </div>     
         </div>
     );
 }
+
+
 
 export default CreateCharacterUI;
