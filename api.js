@@ -204,7 +204,7 @@ exports.setApp = function ( app, client )
       var _ret = [];
       for( var i=0; i<results.length; i++ )
       {
-        _ret.push( results[i].characterName );
+        _ret.push( results[i]);
       }
       
       var refreshedToken = null;
@@ -217,7 +217,7 @@ exports.setApp = function ( app, client )
         console.log(e.message);
       }
     
-      var ret = { results:_ret, error: ' ' + results.length, jwtToken: refreshedToken };
+      var ret = { results:_ret, error: error, jwtToken: refreshedToken };
       
       res.status(200).json(ret);
     });
