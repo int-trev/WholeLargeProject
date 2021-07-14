@@ -48,9 +48,13 @@ function Login()
                 var userId = ud.payload.userId;
                 var firstName = ud.payload.firstName;
                 var lastName = ud.payload.lastName;
-                  
+
+                console.log(userId);
+                
+                
                 var user = {firstName:firstName,lastName:lastName,id:userId}
                 localStorage.setItem('user_data', JSON.stringify(user));
+                console.log(localStorage.getItem('user_data'));
                 window.location.href = '/landing';
             }
         })

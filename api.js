@@ -210,7 +210,7 @@ exports.setApp = function ( app, client )
       var refreshedToken = null;
       try
       {
-        //refreshedToken = token.refresh(jwtToken);
+        refreshedToken = token.refresh(jwtToken);
       }
       catch(e)
       {
@@ -229,8 +229,8 @@ exports.setApp = function ( app, client )
         // outgoing: error  
         var error = '';  
         
-        const { username, password } = req.body;  
-        const newUser = {Login:username,Password:password,verification:false };
+        const { username, password, firstName, lastName, email} = req.body;  
+        const newUser = {Login:username,Password:password,FirstName:firstName, LastName:lastName, Email:email,verification:false };
         const db = client.db();
 
         const results = await db.collection('Users').find({Login:username}).toArray();

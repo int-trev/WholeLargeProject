@@ -10,6 +10,9 @@ function Register()
 
     var loginName;
     var loginPassword;
+    var firstName;
+    var lastName;
+    var email;
 
     const [message,setMessage] = useState('');
 
@@ -17,7 +20,7 @@ function Register()
     {
         event.preventDefault();
 
-        var obj = {username:loginName.value,password:loginPassword.value};
+        var obj = {username:loginName.value,password:loginPassword.value,firstName:firstName.value,lastName:lastName.value,email:email.value};
         var js = JSON.stringify(obj);
 
         var config = 
@@ -55,6 +58,9 @@ function Register()
         <span id="inner-title">PLEASE REGISTER</span><br />
         <input type="text" id="loginName" placeholder="Username" ref={(c) => loginName = c}  /><br />
         <input type="password" id="loginPassword" placeholder="Password" ref={(c) => loginPassword = c} /><br />
+        <input type="text" id="fName" placeholder="First Name" ref={(c) => firstName = c}  /><br />
+        <input type="text" id="lName" placeholder="Last Name" ref={(c) => lastName = c}  /><br />
+        <input type="text" id="email" placeholder="Email" ref={(c) => email = c}  /><br />
         <input type="submit" id="loginButton" className="buttons" value = "Do It"
           onClick={doRegister} />
         <span id="loginResult">{message}</span>
