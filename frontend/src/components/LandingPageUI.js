@@ -15,9 +15,11 @@ const newUser = {
 
 const resultList = newUser.ray.map((obj) =>
 <div>
-    <p>{obj.Login}</p>
-    <input type="submit" id="loginButton" class="buttons" value = "Do It"/>
-    <ViewComp obj = {obj}/>
+  <div className = "grid-display">
+    <p className="item1">{obj.Login}</p>
+    <input type="submit" id="loginButton" className="item2" value = "Do It"/>
+  </div>
+  <ViewComp obj = {obj}/>
 </div>
 );
 
@@ -118,11 +120,11 @@ function LandingPageUI()
 }
 
 function UserGreeting(props) {
-    return <h1>Welcome back!</h1>;
+    return <div></div>;
   }
   
   function GuestGreeting(props) {
-    return <h1>Please sign up.</h1>;
+    return <div></div>;
   }
 
   function LoginButton(props) {
@@ -146,8 +148,6 @@ function ViewComp(props)
 { 
     return(
         <div>
-        <h1>Login</h1>
-        <h1>{props.obj.Login}</h1>
         <LoginControl obj={props.obj}/>
         </div>
     );
@@ -962,8 +962,6 @@ class LoginControl extends React.Component {
             </div>
             <div>
           <UserGreeting />
-          <p>LOOK HERE</p>
-          <p>{props.obj.Login}</p>
           </div>
         </div>
         

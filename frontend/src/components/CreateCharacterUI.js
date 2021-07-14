@@ -158,6 +158,11 @@ function CreateCharacterUI()
     var lastName = ud.lastName;
     userName = firstName + " " + lastName;
 
+    const changeVal = async event =>
+    {
+        acrobatics.value = "applezzz";
+    }
+
     const addCharacter = async event => 
     {
 	    event.preventDefault();
@@ -778,6 +783,8 @@ function CreateCharacterUI()
             <div>
             <button type="button" id="addCardButton" class="buttons" 
                 onClick={addCharacter}> Add Character </button><br />
+            <button type="button" id="addCardButton" class="buttons" 
+                onClick={changeVal}> Add Character </button><br />
             </div>
         </div>
     );
