@@ -12,16 +12,7 @@ const newUser = {
     ]
 };
 
-
-const resultList = newUser.ray.map((obj) =>
-<div>
-  <div className = "grid-display">
-    <p className="item1">{obj.Login}</p>
-    <input type="submit" id="loginButton" className="item2" value = "Do It"/>
-  </div>
-  <ViewComp obj = {obj}/>
-</div>
-);
+var resultList;
 
 
 function getAbout()
@@ -81,16 +72,24 @@ function LandingPageUI()
             }
             else
             {
-                var _results = res.results;
-                var resultText = '';
-                resultList = _results.map((obj) =>
-                <li>{obj.characterName}</li>
+              console.log(response.data);
+              if(res.results[0] != null)
+              {
+                resultList = res.results.map((obj) =>
+                <div>
+                  <div className = "grid-display">
+                    <p className="item1">{obj.characterName}</p>
+                    <input type="submit" id="loginButton" className="item2" value = "Do It"/>
+                  </div>
+                  <ViewComp obj = {obj}/>
+                </div>
                 );
+              }
                 
-                setResults('Card(s) have been retrieved');
+              setResults('Card(s) have been retrieved');
 
-                setCardList(resultText);
-                storage.storeToken( {accessToken:retTok} );
+              //setCardList(resultText);
+              storage.storeToken( {accessToken:retTok} );
             }
         })
         .catch(function (error) 
@@ -111,7 +110,7 @@ function LandingPageUI()
                 ref={(c) => search = c} />
             <span id="cardSearchResult">{searchResults}</span>
             <input type="submit" id="loginButton" class="buttons" value = "Do It"
-             onClick={getAbout} />
+             onClick={searchCard} />
              <div id="component">
                     <span>{resultList}</span>
              </div>

@@ -200,10 +200,11 @@ exports.setApp = function ( app, client )
       const db = client.db();
       const results = await db.collection('DnD').find({"characterName":{$regex:_search+'.*', $options:'r'}}).toArray();
       
+      console.log(results.length);
       var _ret = [];
       for( var i=0; i<results.length; i++ )
       {
-        _ret.push( results[i].Card );
+        _ret.push( results[i].characterName );
       }
       
       var refreshedToken = null;
@@ -216,7 +217,7 @@ exports.setApp = function ( app, client )
         console.log(e.message);
       }
     
-      var ret = { results:_ret, error: error, jwtToken: refreshedToken };
+      var ret = { results:_ret, error: ' ' + results.length, jwtToken: refreshedToken };
       
       res.status(200).json(ret);
     });
