@@ -210,7 +210,7 @@ exports.setApp = function ( app, client )
       var refreshedToken = null;
       try
       {
-        refreshedToken = token.refresh(jwtToken);
+        //refreshedToken = token.refresh(jwtToken);
       }
       catch(e)
       {
