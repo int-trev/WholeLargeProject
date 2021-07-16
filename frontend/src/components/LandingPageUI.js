@@ -78,11 +78,18 @@ function LandingPageUI()
                 resultList = res.results.map((obj) =>
                 <div>
                   <div className = "grid-display-initial">
-                      <p className="item1">Character Name</p>
-                    <p className="item5">{obj.characterName}</p>
-                    <input type="submit" id="loginButton" className="item2" value = "Do It"/>
+                        <p className="item1">Character Name</p>
+                        <p className="item5">{obj.characterName}</p>
+                        <p className="item2">Class 1</p>
+                        <p className="item6">{obj.class1}</p>
+                        <p className="item3">Class 2</p>
+                        <p className="item7">{obj.class2}</p>
+                        <p className="item4">Class 3</p>
+                        <p className="item8">{obj.class3}</p>
+                        <div className="itemlong">
+                        <ViewComp obj = {obj}/>
+                        </div>
                   </div>
-                  <ViewComp obj = {obj}/>
                 </div>
                 );
               }
@@ -137,7 +144,7 @@ function UserGreeting(props) {
   
   function LogoutButton(props) {
     return (
-      <button onClick={props.onClick}>
+      <button onClick={props.onClick} className="item9">
         Hide
       </button>
     );
@@ -476,6 +483,7 @@ class LoginControl extends React.Component {
         {
             var res = response.data;
             var retTok = res.jwtToken;
+            console.log(retTok);
     
             if( res.error.length > 0 )
             {
