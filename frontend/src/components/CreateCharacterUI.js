@@ -309,6 +309,7 @@ function CreateCharacterUI()
             else
             {
                 console.log("hi");
+                storage.storeToken(retTok);
             }
         })
         .catch(function (error) 

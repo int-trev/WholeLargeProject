@@ -77,8 +77,9 @@ function LandingPageUI()
               {
                 resultList = res.results.map((obj) =>
                 <div>
-                  <div className = "grid-display">
-                    <p className="item1">{obj.characterName}</p>
+                  <div className = "grid-display-initial">
+                      <p className="item1">Character Name</p>
+                    <p className="item5">{obj.characterName}</p>
                     <input type="submit" id="loginButton" className="item2" value = "Do It"/>
                   </div>
                   <ViewComp obj = {obj}/>
@@ -483,6 +484,7 @@ class LoginControl extends React.Component {
             else
             {
                 console.log("hi");
+                storage.storeToken(retTok);
             }
         })
         .catch(function (error) 

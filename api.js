@@ -278,7 +278,7 @@ exports.setApp = function ( app, client )
     
       if( results.length > 0 )
       {
-        id = results[0].UserId;
+        id = results[0]._id;
         fn = results[0].FirstName;
         ln = results[0].LastName;
 

@@ -8,6 +8,7 @@ function LoggedInName()
     if(ud != null)
     {
         var userId = ud.id;
+        console.log(userId);
         var firstName = ud.firstName;
         var lastName = ud.lastName;
     }
