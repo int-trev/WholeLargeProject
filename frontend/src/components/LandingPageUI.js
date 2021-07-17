@@ -53,7 +53,7 @@ function LandingPageUI()
             .then(function (response) 
         {
             var res = response.data;
-            var retTok = res.jwtToken.accessToken;
+            var retTok = res.jwtToken;
     
             if( res.error.length > 0 )
             {
@@ -65,7 +65,7 @@ function LandingPageUI()
               if(res.results[0] != null)
               {
                 resultList = res.results.map((obj) =>
-                <div>
+                <div key={obj._id}>
                   <div className = "grid-display-initial">
                         <p className="item1">Character Name</p>
                         <p className="item5">{obj.characterName}</p>
@@ -492,6 +492,52 @@ class LoginControl extends React.Component {
         });
 
 	};
+    const deleteCharacter = async event => 
+    {
+	    event.preventDefault();
+
+        var tok = storage.retrieveToken();
+        var obj = 
+            {
+                characterID: props.obj._id,
+                jwtToken:tok
+            };
+        var js = JSON.stringify(obj);
+
+        var config = 
+        {
+            method: 'post',
+            url: bp.buildPath('api/deleteDND'),	
+            headers: 
+            {
+                'Content-Type': 'application/json'
+            },
+            data: js
+        };
+    
+        axios(config)
+            .then(function (response) 
+        {
+            var res = response.data;
+            var retTok = res.jwtToken;
+            console.log(retTok);
+    
+            if( res.error != "Character successfully  (•_•) ( •_•)>⌐■-■ (⌐■_■)  TERMINATED!   ")
+            {
+                setMessage( "API Error:" + res.error );
+            }
+            else
+            {
+                console.log("hi");
+                storage.storeToken({accessToken:retTok});
+            }
+        })
+        .catch(function (error) 
+        {
+            console.log(error);
+        });
+
+	};
   if(isLoggedIn)
   {
     return(
@@ -506,6 +552,7 @@ class LoginControl extends React.Component {
             <div>
                 <h2>Classes</h2>
                 <table>
+                    <tbody>
                     <tr>
                         <td>
                             <p>Class 1</p>
@@ -549,11 +596,13 @@ class LoginControl extends React.Component {
                         ref={(c) => exp = c} />
                         </td>
                     </tr>
+                    </tbody>
                 </table>
             </div>
             <div>
                 <h2>Character</h2>
                 <table>
+                <tbody>
                     <tr>
                         <td>
                             <p>Alignment</p>
@@ -657,11 +706,13 @@ class LoginControl extends React.Component {
                     ref={(c) => survival = c} />
                         </td>
                     </tr>
+                    </tbody>
                 </table>
             </div>
             <div>
                 <h2>Abilities</h2>
                 <table>
+                <tbody>
                 <tr>
                         <td>
                         <p>Str</p>
@@ -726,12 +777,14 @@ class LoginControl extends React.Component {
                     ref={(c) => chaSave = c} />
                         </td>
                     </tr>
+                    </tbody>
                 </table>
 
             </div>
             <div>
                 <h2>Combat Traits</h2>
                 <table>
+                <tbody>
                     <tr>
                         <td>
                             <p>Armor Class</p>
@@ -835,12 +888,14 @@ class LoginControl extends React.Component {
                     ref={(c) => profLanguages = c} />    
                         </td>
                     </tr>
+                    </tbody>
                 </table>
 
             </div>
             <div>
                 <h2>Currency</h2>
                 <table>
+                <tbody>
                     <tr>
                         <td>
                         <p>Copper Piece</p>
@@ -868,11 +923,13 @@ class LoginControl extends React.Component {
                     ref={(c) => pp = c} />  
                         </td>
                     </tr>
+                    </tbody>
                 </table>
             </div>
             <div>
                 <h2>Physical Appearance</h2>
                 <table>
+                <tbody>
                     <tr>
                         <td>
                         <p>Background</p>
@@ -961,11 +1018,13 @@ class LoginControl extends React.Component {
                     ref={(c) => treasure = c} />  
                         </td>
                     </tr>
+                    </tbody>
                 </table>
             </div>
             <div>
                 <h2>Spells</h2>
                 <table>
+                <tbody>
                     <tr>
                         <td>
                         <p>Spell Class</p>
@@ -1148,11 +1207,12 @@ class LoginControl extends React.Component {
                     ref={(c) => lvl9Expended = c} />
                         </td>
                     </tr>
+                    </tbody>
                 </table>
             </div>
             <div>
-            <button type="button" id="addCardButton" class="buttons" 
-                onClick={updateCharacter}> Update Character </button><br />
+            <button class="blue" onClick={updateCharacter}> Update Character </button>
+            <button class="blue" onClick={deleteCharacter}> Delete Character </button>
             </div>
             <div>
           <UserGreeting />

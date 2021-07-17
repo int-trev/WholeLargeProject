@@ -6,6 +6,12 @@ import Scroll from '../components/Scroll'
 
 const About = () =>
 {
+    var testObj = 
+    {
+        'APPLE' : "banana"
+    }
+
+    console.log(testObj);
     return(
         <div>
             <Scroll />

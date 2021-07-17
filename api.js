@@ -10,13 +10,12 @@ exports.setApp = function ( app, client )
         // outgoing: error  
         var error = '';  
     
-        const { userId, search, jwtToken } = req.body;
+        const { characterID, jwtToken } = req.body;
     
-        var _search = search.trim();
+        var _characterID = characterID.trim();
     
-        var _userId = userId.trim();
     
-        var myQuery = {characterName: _search, userId: _userId};
+        var myQuery = {_id : 'ObjectId("' + _characterID + '")'};
         
         try
           {
@@ -60,7 +59,7 @@ exports.setApp = function ( app, client )
         var refreshedToken = null;
           try
           {
-            refreshedToken = token.refresh(jwtToken);
+            refreshedToken = token.refresh(jwtToken).accessToken;
           }
           catch(e)
           {
@@ -295,15 +294,15 @@ exports.setApp = function ( app, client )
       res.status(200).json(ret);
     });
 
-    
+    // Done
     app.post('/api/addUser', async (req, res, next) =>
     {  
         // incoming: userName, passWord  
         // outgoing: error  
         var error = '';  
         
-        const { username, password, firstName, lastName, email, securityCode} = req.body;  
-        const newUser = {Login:username,Password:password,FirstName:firstName, LastName:lastName, Email:email, SecurityCode:securityCode, verification:false };
+        const { username, password, firstName, lastName, email, securitycode} = req.body;  
+        const newUser = {Login:username,Password:password,FirstName:firstName, LastName:lastName, Email:email, SecurityCode:securitycode, verification:false };
         const db = client.db();
 
         const results = await db.collection('Users').find({Login:username}).toArray();
@@ -401,7 +400,7 @@ exports.setApp = function ( app, client )
         console.log(e.message);
         }
         var current = new Date();
-        var characterID = {_id :objectId};
+        var characterID = {_id : 'ObjectID(' + objectId + ')'};
         const characterUpdate = 
         { set$:{ userName:userName,
           UserId:userId,        
@@ -521,7 +520,7 @@ exports.setApp = function ( app, client )
         try
         {
             const db = client.db();
-            db.collection('DnD').updateOne(characterID, characterUpdate);
+            db.collection('DnD').updateOne(characterID, characterUpdate, {upsert : false});
         }
         catch(e)
         {

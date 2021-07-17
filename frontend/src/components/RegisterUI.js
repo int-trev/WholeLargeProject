@@ -8,13 +8,14 @@ function Register()
     var bp = require('./Path.js');
     var storage = require('../tokenStorage.js');
     var nodemailer = require('nodemailer');
+    var hashing = require('../md5.js');
 
     var loginName;
     var loginPassword;
     var firstName;
     var lastName;
     var email;
-    var securityCode = Math.floor((Math.random() * 1000000) + 100000)
+    var securityCode = Math.floor((Math.random() * 8999) + 1000)
 
     const [message,setMessage] = useState('');
 
@@ -22,7 +23,8 @@ function Register()
     {
         event.preventDefault();
 
-        var obj = {username:loginName.value,password:loginPassword.value,firstName:firstName.value,lastName:lastName.value,email:email.value, securityCode: securityCode};
+        var hashedPass = hashing(loginPassword.value)
+        var obj = {username:loginName.value,password:hashedPass,firstName:firstName.value,lastName:lastName.value,email:email.value, securityCode: securityCode};
         var js = JSON.stringify(obj);
 
         var config = 
@@ -75,6 +77,7 @@ function Register()
                             setMessage("User added to database! Check email for verification.");
                         }
                     });
+                    setMessage("Cool");
             }
         })
         .catch(function (error) 

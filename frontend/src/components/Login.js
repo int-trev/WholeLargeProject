@@ -10,6 +10,7 @@ function Login()
 
     var loginName;
     var loginPassword;
+    var hashing = require('../md5.js');
 
     const [message,setMessage] = useState('');
 
@@ -17,7 +18,8 @@ function Login()
     {
         event.preventDefault();
 
-        var obj = {login:loginName.value,password:loginPassword.value};
+        var hashedPass = hashing(loginPassword.value);
+        var obj = {login:loginName.value,password:hashedPass};
         var js = JSON.stringify(obj);
 
         var config = 
