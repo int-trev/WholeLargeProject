@@ -15,7 +15,8 @@ exports.setApp = function ( app, client )
         var _characterID = characterID.trim();
     
     
-        var myQuery = {_id : 'ObjectId("' + _characterID + '")'};
+        //var myQuery = {_id : 'ObjectId("' + _characterID + '")'};
+        var myQuery = {_id : _characterID}
         
         try
           {

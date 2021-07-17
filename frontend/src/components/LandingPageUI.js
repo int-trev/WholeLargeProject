@@ -534,6 +534,7 @@ class LoginControl extends React.Component {
         })
         .catch(function (error) 
         {
+            console.log("hewooo");
             console.log(error);
         });
 
