@@ -356,7 +356,7 @@ exports.setApp = function ( app, client )
         id = results[0]._id;
         fn = results[0].FirstName;
         ln = results[0].LastName;
-
+        
         try
         {
           ret = token.createToken( fn, ln, id );
@@ -364,6 +364,10 @@ exports.setApp = function ( app, client )
         catch(e)
         {
           ret = {error:e.message};
+        }
+        if (results[0].verification == false)
+        {
+          ret = {error:"email Not verified"};
         }
       }
       else
@@ -401,9 +405,8 @@ exports.setApp = function ( app, client )
         console.log(e.message);
         }
         var current = new Date();
-        var characterID = {_id :objectId};
         const characterUpdate = 
-        { set$:{ userName:userName,
+        { userName:userName,
           UserId:userId,        
           characterName:characterName,
           class1:class1,
@@ -514,14 +517,14 @@ exports.setApp = function ( app, client )
           lvl9Spellslots:lvl9Spellslots, 
           lvl9Prepspells:lvl9Prepspells, 
           lvl9Expendedlvl9:lvl9Expended,
-          dateLastused: current}
+          dateLastused: current
         };
         var error = '';
     
         try
         {
             const db = client.db();
-            db.collection('DnD').updateOne(characterID, characterUpdate);
+            db.collection('DnD').updateOne({objectId:objectId}, {set$:characterUpdate});
         }
         catch(e)
         {
@@ -543,5 +546,59 @@ exports.setApp = function ( app, client )
         
         res.status(200).json(ret);   
     });
+    app.post('/api/updateDnD', async (req, res, next) => 
+    {
+        //Incoming: userID, objectID, change location, and the change 
+        //outgoing the updated info
+
+        const { username, password, firstName, lastName, email, securityCode,jwtToken} = req.body;
+        try
+        {
+        if( token.isExpired(jwtToken))
+        {
+            var r = {error:'The JWT is no longer valid', jwtToken: ''};
+            res.status(200).json(r);
+            return;
+        }
+        } 
+        catch(e)
+        {
+        console.log(e.message);
+        }
+
+        const userUpdate = { Login:username,
+          Password:password,
+          FirstName:firstName, 
+          LastName:lastName, 
+          Email:email, 
+          SecurityCode:securityCode, 
+          verification:true };
+        
+        var error = '';
     
+        try
+        {
+            const db = client.db();
+            db.collection('DnD').updateOne( {Login:username, Password:password , securityCode:securityCode}, {set$:userUpdate});
+        }
+        catch(e)
+        {
+          error = e.toString();
+        }
+      
+        var refreshedToken = null;
+        try
+        {
+          refreshedToken = token.refresh(jwtToken);
+          console.log(refreshedToken);
+        }
+        catch(e)
+        {
+          console.log(e.message);
+        }
+      
+        var ret = { error: error, jwtToken: refreshedToken };
+        
+        res.status(200).json(ret);   
+    });
 }
