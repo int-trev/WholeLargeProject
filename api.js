@@ -356,7 +356,7 @@ exports.setApp = function ( app, client )
         id = results[0]._id;
         fn = results[0].FirstName;
         ln = results[0].LastName;
-
+        
         try
         {
           ret = token.createToken( fn, ln, id );
@@ -364,6 +364,10 @@ exports.setApp = function ( app, client )
         catch(e)
         {
           ret = {error:e.message};
+        }
+        if (results[0].verification == false)
+        {
+          ret = {error:"email Not verified"};
         }
       }
       else
@@ -401,7 +405,7 @@ exports.setApp = function ( app, client )
         console.log(e.message);
         }
         var current = new Date();
-        var characterID = {_id :objectId};
+        var characterID = {objectId :objectId};
         const characterUpdate = 
         { set$:{ userName:userName,
           UserId:userId,        
@@ -521,7 +525,7 @@ exports.setApp = function ( app, client )
         try
         {
             const db = client.db();
-            db.collection('DnD').updateOne(characterID, characterUpdate);
+            db.collection('DnD').updateOne({characterID}, {characterUpdate});
         }
         catch(e)
         {
