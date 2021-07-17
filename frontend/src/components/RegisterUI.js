@@ -7,12 +7,14 @@ function Register()
 
     var bp = require('./Path.js');
     var storage = require('../tokenStorage.js');
+    var nodemailer = require('nodemailer');
 
     var loginName;
     var loginPassword;
     var firstName;
     var lastName;
     var email;
+    var securityCode = Math.floor((Math.random() * 1000000) + 100000)
 
     const [message,setMessage] = useState('');
 
@@ -20,7 +22,7 @@ function Register()
     {
         event.preventDefault();
 
-        var obj = {username:loginName.value,password:loginPassword.value,firstName:firstName.value,lastName:lastName.value,email:email.value};
+        var obj = {username:loginName.value,password:loginPassword.value,firstName:firstName.value,lastName:lastName.value,email:email.value, securityCode: securityCode};
         var js = JSON.stringify(obj);
 
         var config = 
@@ -44,7 +46,35 @@ function Register()
             }
             else 
             {	
-                setMessage("User added to database! Check email for verification.");
+                var transporter =
+                nodemailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                        user: 'dndpagemaker@gmail.com',
+                        pass: 'DATZProject4@'
+                    }
+                });
+
+                var mailOptions = {
+                    from: 'dndpagemaker@gmail.com',
+                    to: email,
+                    subject: 'Password Verification for DnDPageMaker',
+                    text: 'Enter this code in the security code section: ' + securityCode
+                };
+
+                transporter.sendMail(mailOptions,
+                    function(error,info){
+                        if(error)
+                        {
+                            console.log(error);
+                            setMessage(error);
+                        }
+                        else
+                        {
+                            console.log('Email sent: ' + info.response);
+                            setMessage("User added to database! Check email for verification.");
+                        }
+                    });
             }
         })
         .catch(function (error) 

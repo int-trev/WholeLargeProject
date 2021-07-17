@@ -1,7 +1,79 @@
 var token = require('./createJWT.js');
 
+//need to address issues with JWT...when I have done commented it just means what it needs to do is being done
+
 exports.setApp = function ( app, client )
 {
+    app.post('/api/deleteDND', async (req, res, next) =>
+    {  
+        // incoming: userName, passWord  
+        // outgoing: error  
+        var error = '';  
+    
+        const { userId, search, jwtToken } = req.body;
+    
+        var _search = search.trim();
+    
+        var _userId = userId.trim();
+    
+        var myQuery = {characterName: _search, userId: _userId};
+        
+        try
+          {
+            if( token.isExpired(jwtToken))
+            {
+              var r = {error:'The JWT is no longer valid', jwtToken: ''};
+              res.status(200).json(r);
+              return;
+            }
+          }
+          catch(e)
+          {
+            console.log(e.message);
+          }
+        
+          const db = client.db();
+    
+        const results = await db.collection('Characters').find({myQuery}).toArray();
+        if(results == 0)
+        {
+          //do regular code
+          var ret = { error: "Character does not exist!  ¯\(°_o)/¯" };  
+          res.status(200).json(ret);
+        }
+        else
+        {
+            try {        
+                const result = await db.collection('Characters').deleteOne(myQuery);
+                error = "Character successfully  (•_•) ( •_•)>⌐■-■ (⌐■_■)  TERMINATED!  ";
+                }  
+              catch(e)
+                {    
+                    error = e.toString();  
+                }
+        
+                var ret = { error: error,};
+                res.status(200).json(ret);
+    
+        }
+    
+        var refreshedToken = null;
+          try
+          {
+            refreshedToken = token.refresh(jwtToken);
+          }
+          catch(e)
+          {
+            console.log(e.message);
+          }
+        
+          var ret = { results:_ret, error: error, jwtToken: refreshedToken };
+          
+          res.status(200).json(ret);
+          
+    });
+
+    // Done
     app.post('/api/addDnD', async (req, res, next) =>
     {
       // incoming: userId, color
@@ -160,7 +232,7 @@ exports.setApp = function ( app, client )
       var refreshedToken = null;
       try
       {
-        refreshedToken = token.refresh(jwtToken);
+        refreshedToken = token.refresh(jwtToken).accessToken;
       }
       catch(e)
       {
@@ -172,6 +244,7 @@ exports.setApp = function ( app, client )
       res.status(200).json(ret);
     });
 
+    // Done
     app.post('/api/searchDnD', async (req, res, next) => 
     {
       // incoming: userId, search
@@ -210,7 +283,7 @@ exports.setApp = function ( app, client )
       var refreshedToken = null;
       try
       {
-        refreshedToken = token.refresh(jwtToken);
+        refreshedToken = token.refresh(jwtToken).accessToken;
       }
       catch(e)
       {
@@ -222,21 +295,23 @@ exports.setApp = function ( app, client )
       res.status(200).json(ret);
     });
 
-    // Done
+    
     app.post('/api/addUser', async (req, res, next) =>
     {  
         // incoming: userName, passWord  
         // outgoing: error  
         var error = '';  
         
-        const { username, password, firstName, lastName, email} = req.body;  
-        const newUser = {Login:username,Password:password,FirstName:firstName, LastName:lastName, Email:email,verification:false };
+        const { username, password, firstName, lastName, email, securityCode} = req.body;  
+        const newUser = {Login:username,Password:password,FirstName:firstName, LastName:lastName, Email:email, SecurityCode:securityCode, verification:false };
         const db = client.db();
 
         const results = await db.collection('Users').find({Login:username}).toArray();
+        // Add checker for email
         if(results == 0)
         {
           //do regular code
+          
           try {        
             const result = await db.collection('Users').insertOne(newUser);
             error = "none";
@@ -284,7 +359,6 @@ exports.setApp = function ( app, client )
 
         try
         {
-          const token = require("./createJWT.js");
           ret = token.createToken( fn, ln, id );
         }
         catch(e)
@@ -458,6 +532,7 @@ exports.setApp = function ( app, client )
         try
         {
           refreshedToken = token.refresh(jwtToken);
+          console.log(refreshedToken);
         }
         catch(e)
         {

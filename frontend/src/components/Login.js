@@ -41,7 +41,7 @@ function Login()
             }
             else 
             {	
-                storage.storeToken(res);
+                storage.storeToken({accessToken:res.accessToken});
                 var jwt = require('jsonwebtoken');
     
                 var ud = jwt.decode(storage.retrieveToken(),{complete:true});

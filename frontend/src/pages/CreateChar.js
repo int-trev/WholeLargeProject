@@ -9,7 +9,7 @@ import Create from '../components/CreateCharacterUI'
 const CreateChar = () =>
 {
     return(
-        <div class = "brown">
+        <div>
             <Scroll />
             <PageTitle />
             <LoggedInName />

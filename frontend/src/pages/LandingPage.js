@@ -9,7 +9,7 @@ import Scroll from '../components/Scroll'
 const Landing = () =>
 {
     return(
-        <div class = "brown">
+        <div>
             <Scroll />
             <PageTitle />
             <LoggedInName />

@@ -22,17 +22,14 @@ const LoginPage = () =>
       <div>
         <Scroll />
         <PageTitle />
-        <div className = "background">
+        
           <div className = "another">
             <Login />
           </div>
           <h1>About Us</h1>
-          <input type="submit" id="loginButton" class="buttons" value = "Do It"
-          onClick={getAbout} />
+          <button class="blue" onClick={getAbout}>About Us</button>
           <p>Don't have an account? Create one here!</p>
-          <input type="submit" id="loginButton" className="buttons" value = "Do It"
-          onClick={getNewUser} />
-        </div>
+          <button class = "orange" onClick={getNewUser}>Sign Up Here!</button>
       </div>
     );
 };
