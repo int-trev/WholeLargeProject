@@ -357,18 +357,30 @@ exports.setApp = function ( app, client )
         fn = results[0].FirstName;
         ln = results[0].LastName;
         
-        try
-        {
-          ret = token.createToken( fn, ln, id );
-        }
-        catch(e)
-        {
-          ret = {error:e.message};
-        }
-        if (results[0].verification == false)
+        /*if (results[0].verification == false)
         {
           ret = {error:"email Not verified"};
         }
+        else
+        {
+          try
+          {
+            ret = token.createToken( fn, ln, id );
+          }
+          catch(e)
+          {
+            ret = {error:e.message};
+          }
+        }
+        */
+       try
+       {
+         ret = token.createToken( fn, ln, id );
+       }
+       catch(e)
+       {
+         ret = {error:e.message};
+       }
       }
       else
       {
