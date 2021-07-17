@@ -543,5 +543,61 @@ exports.setApp = function ( app, client )
         
         res.status(200).json(ret);   
     });
+    app.post('/api/updateDnD', async (req, res, next) => 
+    {
+        //Incoming: userID, objectID, change location, and the change 
+        //outgoing the updated info
+
+        const { username, password, firstName, lastName, email, securityCode,jwtToken} = req.body;
+        try
+        {
+        if( token.isExpired(jwtToken))
+        {
+            var r = {error:'The JWT is no longer valid', jwtToken: ''};
+            res.status(200).json(r);
+            return;
+        }
+        } 
+        catch(e)
+        {
+        console.log(e.message);
+        }
+
+        const characterUpdate = 
+        { {Login:username, Password:password , securityCode:securityCode}, 
+          {set$:{ Login:username,
+          Password:password,
+          FirstName:firstName, 
+          LastName:lastName, 
+          Email:email, 
+          SecurityCode:securityCode, 
+          verification:true }
+        };
+        var error = '';
     
+        try
+        {
+            const db = client.db();
+            db.collection('DnD').updateOne(characterID, characterUpdate);
+        }
+        catch(e)
+        {
+          error = e.toString();
+        }
+      
+        var refreshedToken = null;
+        try
+        {
+          refreshedToken = token.refresh(jwtToken);
+          console.log(refreshedToken);
+        }
+        catch(e)
+        {
+          console.log(e.message);
+        }
+      
+        var ret = { error: error, jwtToken: refreshedToken };
+        
+        res.status(200).json(ret);   
+    });
 }
