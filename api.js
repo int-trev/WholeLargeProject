@@ -405,9 +405,8 @@ exports.setApp = function ( app, client )
         console.log(e.message);
         }
         var current = new Date();
-        var characterID = {objectId :objectId};
         const characterUpdate = 
-        { set$:{ userName:userName,
+        { userName:userName,
           UserId:userId,        
           characterName:characterName,
           class1:class1,
@@ -518,14 +517,14 @@ exports.setApp = function ( app, client )
           lvl9Spellslots:lvl9Spellslots, 
           lvl9Prepspells:lvl9Prepspells, 
           lvl9Expendedlvl9:lvl9Expended,
-          dateLastused: current}
+          dateLastused: current
         };
         var error = '';
     
         try
         {
             const db = client.db();
-            db.collection('DnD').updateOne({characterID}, {characterUpdate});
+            db.collection('DnD').updateOne({objectId:objectId}, {set$:characterUpdate});
         }
         catch(e)
         {
@@ -567,22 +566,20 @@ exports.setApp = function ( app, client )
         console.log(e.message);
         }
 
-        const characterUpdate = 
-        { {Login:username, Password:password , securityCode:securityCode}, 
-          {set$:{ Login:username,
+        const userUpdate = { Login:username,
           Password:password,
           FirstName:firstName, 
           LastName:lastName, 
           Email:email, 
           SecurityCode:securityCode, 
-          verification:true }
-        };
+          verification:true };
+        
         var error = '';
     
         try
         {
             const db = client.db();
-            db.collection('DnD').updateOne(characterID, characterUpdate);
+            db.collection('DnD').updateOne( {Login:username, Password:password , securityCode:securityCode}, {set$:userUpdate});
         }
         catch(e)
         {
