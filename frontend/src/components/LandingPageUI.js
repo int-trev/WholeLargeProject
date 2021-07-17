@@ -23,6 +23,7 @@ function LandingPageUI()
     const [message,setMessage] = useState('');
     const [searchResults,setResults] = useState('');
     const [cardList,setCardList] = useState('');
+    const [resultss,setResultList] = useState('');
 
     var _ud = localStorage.getItem('user_data');
     var ud = JSON.parse(_ud);
@@ -81,6 +82,11 @@ function LandingPageUI()
                   </div>
                 </div>
                 );
+                setResultList(resultList);
+              }
+              else
+              {
+                setResultList("None here mate");
               }
                 
               setResults('Card(s) have been retrieved');
@@ -109,7 +115,7 @@ function LandingPageUI()
             <input type="submit" id="loginButton" class="buttons" value = "Do It"
              onClick={searchCard} />
              <div id="component">
-                    <span>{resultList}</span>
+                    <span>{resultss}</span>
              </div>
         </div>
     );
