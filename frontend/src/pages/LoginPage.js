@@ -29,7 +29,7 @@ const LoginPage = () =>
           <h1>About Us</h1>
           <button class="blue" onClick={getAbout}>About Us</button>
           <p>Don't have an account? Create one here!</p>
-          <button class = "orange" onClick={getNewUser}>Sign Up Here!</button>
+          <button class = "blue" onClick={getNewUser}>Sign Up Here!</button>
       </div>
     );
 };
