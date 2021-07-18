@@ -38,7 +38,7 @@ exports.setApp = function ( app, client )
         if(results == 0)
         {
           //do regular code
-          var ret = { error: "Character does not exist!  ¯\(°_o)/¯" + _characterID};  
+          var ret = { error: "Character does not exist!  ¯\(°_o)/¯", myQuery};  
           res.status(200).json(ret);
         }
         else
