@@ -304,8 +304,8 @@ function CreateCharacterUI()
             }
             else
             {
-                console.log("hi");
-                storage.storeToken(retTok);
+                console.log(res);
+                storage.storeToken({accessToken:retTok});
             }
         })
         .catch(function (error) 
