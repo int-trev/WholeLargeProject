@@ -313,8 +313,8 @@ exports.setApp = function ( app, client )
         var error = '';  
         var nodemailer = require('nodemailer');
         
-        const { username, password, firstName, lastName, email, securitycode} = req.body;  
-        const newUser = {Login:username,Password:password,FirstName:firstName, LastName:lastName, Email:email, SecurityCode:securitycode, verification:false };
+        const { username, password, firstName, lastName, email, SecurityCode} = req.body;  
+        const newUser = {Login:username,Password:password,FirstName:firstName, LastName:lastName, Email:email, SecurityCode:SecurityCode, verification:false };
         const db = client.db();
 
         const results = await db.collection('Users').find({Login:username}).toArray();
@@ -340,7 +340,7 @@ exports.setApp = function ( app, client )
                     from: 'dndpagemaker@gmail.com',
                     to: email,
                     subject: 'Password Verification for DnDPageMaker',
-                    text: 'Enter this code in the security code section: ' + securityCode
+                    text: 'Enter this code in the security code section: ' + SecurityCode
                 };
 
                 transporter.sendMail(mailOptions,
