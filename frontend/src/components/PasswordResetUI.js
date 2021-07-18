@@ -7,7 +7,6 @@ function PasswordReset()
 
     var bp = require('./Path.js');
     var storage = require('../tokenStorage.js');
-    var nodemailer = require('nodemailer');
     var hashing = require('../md5.js');
 
     var loginName;
@@ -67,9 +66,9 @@ function PasswordReset()
                 <input type="text" id="loginName" placeholder="Username" ref={(c) => loginName = c}  /><br />
                 <input type="text" id="email" placeholder="Email" ref={(c) => email = c}  /><br />
                 <input type="text" id="code" placeholder="Security Code" ref={(c) => securityCode = c}  /><br />
-                <input type="password" id="loginPassword" placeholder="Password" ref={(c) => loginPassword = c} /><br />
+                <input type="password" id="loginPassword" placeholder="New Password" ref={(c) => loginPassword = c} /><br />
                 <input type="password" id="loginPassword" placeholder="Confirm Password" ref={(c) => confimedPassword = c} /><br />
-                <button className = "blue" onClick={doRegister}>Reset</button>
+                <button className = "blue" onClick={doRegister}>Reset Password</button>
                 <span id="loginResult">{message}</span>
             </div>
             );

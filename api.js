@@ -608,22 +608,22 @@ exports.setApp = function ( app, client )
 
     app.post('/api/updatePassword', async (req, res, next) => 
     {
-        //Incoming: userID, objectID, change location, and the change 
-        //outgoing the updated info
+        // Incoming: userID, objectID, change location, and the change 
+        // outgoing the updated info
 
         const { username, password, email, securityCode , jwtToken} = req.body;
         try
         {
-        if( token.isExpired(jwtToken))
-        {
+          if( token.isExpired(jwtToken))
+          {
             var r = {error:'The JWT is no longer valid', jwtToken: ''};
             res.status(200).json(r);
             return;
-        }
+          }
         } 
         catch(e)
         {
-        console.log(e.message);
+          console.log(e.message);
         }
 
         const userUpdate = {
@@ -635,7 +635,15 @@ exports.setApp = function ( app, client )
         try
         {
             const db = client.db();
-            db.collection('DnD').updateOne( {Login:username, Password:password , SecurityCode:securityCode, Email:email}, {set$:userUpdate});
+            const results = await db.collection('Users').find({Login:username,Password:password, SecurityCode: securityCode, Email:email}).toArray();
+            if(results == 0)
+            {
+              error = "Information incorrect"
+            }
+            else
+            {
+              db.collection('DnD').updateOne( {Login:username, Password:password , SecurityCode:securityCode, Email:email}, {set$:userUpdate});
+            }
         }
         catch(e)
         {
@@ -664,20 +672,7 @@ exports.setApp = function ( app, client )
         //Incoming: userID, objectID, change location, and the change 
         //outgoing the updated info
 
-        const { username, password, email, securityCode , jwtToken} = req.body;
-        try
-        {
-          if( token.isExpired(jwtToken))
-          {
-              var r = {error:'The JWT is no longer valid', jwtToken: ''};
-              res.status(200).json(r);
-              return;
-          }
-        } 
-        catch(e)
-        {
-          console.log(e.message);
-        }
+        const { username, password, email, securityCode} = req.body;
 
         const userUpdate = {
           verification: true
@@ -695,19 +690,8 @@ exports.setApp = function ( app, client )
           error = e.toString();
         }
       
-        var refreshedToken = null;
-
-        try
-        {
-          refreshedToken = token.refresh(jwtToken).accessToken
-          //console.log(refreshedToken);
-        }
-        catch(e)
-        {
-          console.log(e.message);
-        }
       
-        var ret = { error: error, jwtToken: refreshedToken };
+        var ret = { error: error};
         
         res.status(200).json(ret);   
     });

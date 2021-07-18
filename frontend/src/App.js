@@ -8,6 +8,10 @@ import LandingPage from './pages/LandingPage';
 import AboutUs from './pages/AboutUs';
 import CreateCharacterPage from './pages/CreateChar';
 import Register from './pages/Register';
+import PasswordReset from './pages/Register';
+import Verification from './pages/VerificationPage';
+
+
 
 
 function App() {
@@ -30,8 +34,17 @@ function App() {
           <AboutUs />
         </Route>
 
-        <Route path = "/createcharacterpage" exact>
+        <Route path = "/createcharacter" exact>
           <CreateCharacterPage />
+        </Route>
+
+        <Route path = "/passwordreset" exact>
+          <PasswordReset />
+        </Route>
+
+
+        <Route path = "/verification" exact>
+          <Verification />
         </Route>
 
         <Route path = "/register" exact>
