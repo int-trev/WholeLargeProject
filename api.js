@@ -13,9 +13,11 @@ exports.setApp = function ( app, client )
         const { characterID, jwtToken } = req.body;
     
         var _characterID = characterID.trim();
+
+        var ObjectId = require('mongodb').ObjectID;
     
     
-        var myQuery = {_id : 'ObjectId("' + _characterID + '")'};
+        var myQuery = {"_id" : ObjectId(_characterID)};
         //var myQuery = {_id : _characterID}
         
         try
