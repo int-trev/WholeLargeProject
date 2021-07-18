@@ -7,7 +7,6 @@ function Register()
 
     var bp = require('./Path.js');
     var storage = require('../tokenStorage.js');
-    var nodemailer = require('nodemailer');
     var hashing = require('../md5.js');
 
     var loginName;
@@ -48,35 +47,6 @@ function Register()
             }
             else 
             {	
-                var transporter =
-                nodemailer.createTransport({
-                    service: 'gmail',
-                    auth: {
-                        user: 'dndpagemaker@gmail.com',
-                        pass: 'DATZProject4@'
-                    }
-                });
-
-                var mailOptions = {
-                    from: 'dndpagemaker@gmail.com',
-                    to: email,
-                    subject: 'Password Verification for DnDPageMaker',
-                    text: 'Enter this code in the security code section: ' + securityCode
-                };
-
-                transporter.sendMail(mailOptions,
-                    function(error,info){
-                        if(error)
-                        {
-                            console.log(error);
-                            setMessage(error);
-                        }
-                        else
-                        {
-                            console.log('Email sent: ' + info.response);
-                            setMessage("User added to database! Check email for verification.");
-                        }
-                    });
                     setMessage("Cool");
             }
         })

@@ -311,6 +311,7 @@ exports.setApp = function ( app, client )
         // incoming: userName, passWord  
         // outgoing: error  
         var error = '';  
+        var nodemailer = require('nodemailer');
         
         const { username, password, firstName, lastName, email, securitycode} = req.body;  
         const newUser = {Login:username,Password:password,FirstName:firstName, LastName:lastName, Email:email, SecurityCode:securitycode, verification:false };
@@ -325,6 +326,34 @@ exports.setApp = function ( app, client )
           try {        
             const result = await db.collection('Users').insertOne(newUser);
             error = "none";
+            
+            var transporter =
+                nodemailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                        user: 'dndpagemaker@gmail.com',
+                        pass: 'DATZProject4@'
+                    }
+                });
+
+                var mailOptions = {
+                    from: 'dndpagemaker@gmail.com',
+                    to: email,
+                    subject: 'Password Verification for DnDPageMaker',
+                    text: 'Enter this code in the security code section: ' + securityCode
+                };
+
+                transporter.sendMail(mailOptions,
+                    function(err,info){
+                        if(error)
+                        {
+                          error = err;
+                        }
+                        else
+                        {
+                            console.log('Email sent: ' + info.response);
+                        }
+                    });
             }  
           catch(e)
             {    
