@@ -13,6 +13,7 @@ function PasswordReset()
     var loginPassword;
     var email;
     var confimedPassword;
+    var securityCode;
 
     const [message,setMessage] = useState('');
 
@@ -21,7 +22,7 @@ function PasswordReset()
         event.preventDefault();
 
         var hashedPass = hashing(loginPassword.value)
-        var obj = {username:loginName.value,password:hashedPass,firstName:firstName.value,lastName:lastName.value,email:email.value, securityCode: securityCode};
+        var obj = {username:loginName.value,password:hashedPass,firstName:firstName.value,lastName:lastName.value,email:email.value, securityCode: securityCode.value};
         var js = JSON.stringify(obj);
         
         if(loginPassword != confimedPassword)
