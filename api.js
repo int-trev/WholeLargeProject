@@ -15,8 +15,8 @@ exports.setApp = function ( app, client )
         var _characterID = characterID.trim();
     
     
-        //var myQuery = {_id : 'ObjectId("' + _characterID + '")'};
-        var myQuery = {_id : _characterID}
+        var myQuery = {_id : 'ObjectId("' + _characterID + '")'};
+        //var myQuery = {_id : _characterID}
         
         try
           {
@@ -44,7 +44,7 @@ exports.setApp = function ( app, client )
         else
         {
             try {        
-                const result = await db.collection('Characters').deleteOne(myQuery);
+                const result = await db.collection('DnD').deleteOne(myQuery);
                   if(result.deletedCount == 1)
                   {
                     error = "Character successfully  (•_•) ( •_•)>⌐■-■ (⌐■_■)  TERMINATED!  ";
