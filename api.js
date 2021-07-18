@@ -545,7 +545,15 @@ exports.setApp = function ( app, client )
         try
         {
             const db = client.db();
-            db.collection('DnD').updateOne({objectId:objectId}, {set$:characterUpdate});
+
+            var ObjectId = require('mongodb').ObjectID;
+    
+
+            _characterID = objectId.trim();
+            
+            var myQuery = {"_id" : ObjectId(_characterID)};
+
+            db.collection('DnD').updateOne(myQuery, {set$:characterUpdate});
         }
         catch(e)
         {
