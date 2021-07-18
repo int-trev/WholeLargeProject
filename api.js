@@ -34,18 +34,26 @@ exports.setApp = function ( app, client )
         
           const db = client.db();
     
-        const results = await db.collection('Characters').find({myQuery}).toArray();
+        const results = await db.collection('DnD').find(myQuery).toArray();
         if(results == 0)
         {
           //do regular code
-          var ret = { error: "Character does not exist!  ¯\(°_o)/¯" };  
+          var ret = { error: "Character does not exist!  ¯\(°_o)/¯" + _characterID};  
           res.status(200).json(ret);
         }
         else
         {
             try {        
                 const result = await db.collection('Characters').deleteOne(myQuery);
-                error = "Character successfully  (•_•) ( •_•)>⌐■-■ (⌐■_■)  TERMINATED!  ";
+                  if(result.deletedCount == 1)
+                  {
+                    error = "Character successfully  (•_•) ( •_•)>⌐■-■ (⌐■_■)  TERMINATED!  ";
+                  }
+                  else
+                  {
+                    error = "Character could not be found"
+                  }
+                
                 }  
               catch(e)
                 {    
@@ -528,8 +536,7 @@ exports.setApp = function ( app, client )
           lvl8Expended:lvl8Expended, 
           lvl9Spellslots:lvl9Spellslots, 
           lvl9Prepspells:lvl9Prepspells, 
-          lvl9Expendedlvl9:lvl9Expended,
-          dateLastused: current
+          lvl9Expendedlvl9:lvl9Expended
         };
         var error = '';
     

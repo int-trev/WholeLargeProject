@@ -112,8 +112,7 @@ function LandingPageUI()
             <input type="text" id="searchText" placeholder="Card To Search For" 
                 ref={(c) => search = c} />
             <span id="cardSearchResult">{searchResults}</span>
-            <input type="submit" id="loginButton" class="buttons" value = "Do It"
-             onClick={searchCard} />
+             <button className="blue" onClick={searchCard}>Search</button>
              <div id="component">
                     <span>{resultss}</span>
              </div>

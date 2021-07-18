@@ -204,4 +204,9 @@ button.red:active {
     background: -ms-linear-gradient(top, #D74736, #AD2719);
 }
 
+input
+{
+    opacity: 0.5;
+}
+
 
