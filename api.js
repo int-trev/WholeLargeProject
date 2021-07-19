@@ -683,7 +683,7 @@ exports.setApp = function ( app, client )
         try
         {
             const db = client.db();
-            db.collection('DnD').updateOne( {Login:username, Password:password , SecurityCode:securityCode, Email:email}, {set$:userUpdate});
+            db.collection('DnD').updateOne( {Login:username, Password:password , SecurityCode:securityCode, Email:email}, {$set:userUpdate});
         }
         catch(e)
         {
