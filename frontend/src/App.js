@@ -8,7 +8,7 @@ import LandingPage from './pages/LandingPage';
 import AboutUs from './pages/AboutUs';
 import CreateCharacterPage from './pages/CreateChar';
 import Register from './pages/Register';
-import PasswordReset from './pages/PasswordResetPage';
+//import PasswordReset from './pages/PasswordResetPage';
 import Verification from './pages/VerificationPage';
 
 
@@ -38,9 +38,6 @@ function App() {
           <CreateCharacterPage />
         </Route>
 
-        <Route path = "/passwordreset" exact>
-          <PasswordReset />
-        </Route>
 
 
 
