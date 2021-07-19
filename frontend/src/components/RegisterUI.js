@@ -15,7 +15,6 @@ function Register()
     var lastName;
     var email;
     var securityCode = Math.floor((Math.random() * 8999) + 1000);
-    securityCode.toString();
     console.log(securityCode);
 
     const [message,setMessage] = useState('');
