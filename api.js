@@ -675,7 +675,7 @@ exports.setApp = function ( app, client )
         const { username, password, email, securityCode} = req.body;
 
         const userUpdate = {
-          verification: true
+          "verification": true
         };
         
         var error = '';
