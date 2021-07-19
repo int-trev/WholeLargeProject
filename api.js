@@ -686,7 +686,7 @@ exports.setApp = function ( app, client )
             const results = await db.collection('Users').find({Login:username, Password:password , SecurityCode:securityCode, Email:email}).toArray();
             if(results.length == 0)
             {
-              error = "User not found";
+              error = req.body;
             }
             else
             {
