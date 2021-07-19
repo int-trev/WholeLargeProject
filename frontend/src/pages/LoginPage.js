@@ -3,7 +3,7 @@ import './LandingPageCSS.css';
 
 import PageTitle from '../components/PageTitle';
 import Login from '../components/Login';
-import Scroll from '../components/Scroll'
+import Scroll from '../components/Scroll';
 
 function getAbout()
 {

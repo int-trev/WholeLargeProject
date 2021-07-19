@@ -55,7 +55,7 @@ function Verification()
             console.log(error);
         });
         
-
+    }
         return(
         <div id="loginDiv">
             <span id="inner-title">ENTER YOUR INFORMATION TO CONFIRM YOUR IDENTITY</span><br />
@@ -68,7 +68,7 @@ function Verification()
         </div>
         );
         
-    }   
+       
 };
 
 export default Verification;

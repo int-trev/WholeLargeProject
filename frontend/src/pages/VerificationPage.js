@@ -2,19 +2,20 @@ import React from 'react';
 import './LandingPageCSS.css';
 
 import PageTitle from '../components/PageTitle';
-import Scroll from '../components/Scroll'
-import VerifyUI from '../components/VerificationUI'
+import Scroll from '../components/Scroll';
+import VerifyUI from '../components/VerificationUI';
 
 
-const Verify = () =>
+const Verifyy = () =>
 {
     return(
         <div>
             <Scroll />
             <PageTitle />
             <VerifyUI />
+            <p>hello</p>
         </div>
     );
 }
 
-export default Verify;
+export default Verifyy;
