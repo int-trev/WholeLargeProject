@@ -675,7 +675,7 @@ exports.setApp = function ( app, client )
         const { username, password, email, securityCode} = req.body;
 
         const userUpdate = {
-          verification: true
+          verification: "true"
         };
         
         var error = '';
@@ -683,7 +683,15 @@ exports.setApp = function ( app, client )
         try
         {
             const db = client.db();
-            db.collection('DnD').updateOne( {Login:username, Password:password , SecurityCode:securityCode, Email:email}, {$set:userUpdate});
+            const results = await db.collection('Users').find({Login:username, Password:password , SecurityCode:securityCode, Email:email}).toArray();
+            if(results.length == 0)
+            {
+              error = "User not found";
+            }
+            else
+            {
+              db.collection('DnD').updateOne( {Login:username, Password:password , SecurityCode:securityCode, Email:email}, {$set:userUpdate});
+            }
         }
         catch(e)
         {
