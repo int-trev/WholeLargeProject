@@ -14,7 +14,8 @@ function Register()
     var firstName;
     var lastName;
     var email;
-    var securityCode = Math.floor((Math.random() * 8999) + 1000);
+    var sc = Math.floor((Math.random() * 8999) + 1000);
+    var securityCode = "sc(" + sc + ")";
     console.log(securityCode);
 
     const [message,setMessage] = useState('');
@@ -42,13 +43,13 @@ function Register()
             .then(function (response) 
         {
             var res = response.data;
-            if (res.error == "Duplicate username and/or password detected") 
+            if (res.error === "Duplicate username and/or password detected") 
             {
                 setMessage(res.error);
             }
             else 
             {	
-                    setMessage("Cool");
+                setMessage("Cool");
             }
         })
         .catch(function (error) 
