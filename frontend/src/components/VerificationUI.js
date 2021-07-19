@@ -48,7 +48,7 @@ function Verification()
             }
             else 
             {	
-            setMessage("User is now verified")
+            console.log("verified");
             }
         })
         .catch(function (error) 

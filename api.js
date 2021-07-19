@@ -690,7 +690,8 @@ exports.setApp = function ( app, client )
             }
             else
             {
-              db.collection('DnD').updateOne( {Login:username, Password:password , SecurityCode:securityCode, Email:email}, {$set:userUpdate});
+              db.collection('Users').updateOne( {Login:username, Password:password , SecurityCode:securityCode, Email:email}, {$set:userUpdate});
+              error = {Login:username, Password:password , SecurityCode:securityCode, Email:email, userud: userUpdate};
             }
         }
         catch(e)
