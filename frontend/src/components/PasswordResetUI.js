@@ -36,7 +36,7 @@ function PasswordReset()
             var config = 
             {
             method: 'post',
-            url: bp.buildPath('api/addUser'),	
+            url: bp.buildPath('api/updatePassword'),	
             headers: 
             {
                 'Content-Type': 'application/json'
