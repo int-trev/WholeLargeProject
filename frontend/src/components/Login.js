@@ -10,9 +10,50 @@ function Login()
 
     var loginName;
     var loginPassword;
+    var email;
     var hashing = require('../md5.js');
 
     const [message,setMessage] = useState('');
+
+
+    //make event to create security code
+    const sendPasswordEmail = async event =>
+    {
+        event.preventDefault();
+
+        var sc = Math.floor((Math.random() * 8999) + 1000);
+        var obj = {email: email, securityCode: sc};
+        var js = JSON.stringify(obj);
+
+        var config = 
+        {
+            method: 'post',
+            url: bp.buildPath('api/passwordResetEmail'),	
+            headers: 
+            {
+                'Content-Type': 'application/json'
+            },
+            data: js
+        };
+
+        axios(config)
+            .then(function (response) 
+        {
+            var res = response.data;
+            if (res.error) 
+            {
+                setMessage('Email is not mapped to an account');
+            }
+            else 
+            {	
+                window.location.href = '/passwordreset';
+            }
+        })
+        .catch(function (error) 
+        {
+            console.log(error);
+        });
+    }
 
     const doLogin = async event => 
     {
@@ -71,9 +112,11 @@ function Login()
         <span id="inner-title">PLEASE LOG IN</span><br />
         <input type="text" id="loginName" placeholder="Username" ref={(c) => loginName = c}  /><br />
         <input type="password" id="loginPassword" placeholder="Password" ref={(c) => loginPassword = c} /><br />
-        <input type="submit" id="loginButton" className="buttons" value = "Do It"
-          onClick={doLogin} />
+        <button className= "blue" onClick={doLogin}>Login</button>
         <span id="loginResult">{message}</span>
+        <p>Forgot your password? Provide your email and click this button to get a code and a link to use to reset your password.</p>
+        <input type="text" id="email" placeholder="Email" ref={(c) => email = c} /><br />
+
      </div>
     );
 };

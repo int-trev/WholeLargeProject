@@ -322,50 +322,61 @@ exports.setApp = function ( app, client )
         if(results == 0)
         {
           //do regular code
-          
-          try {        
-            const result = await db.collection('Users').insertOne(newUser);
-            error = "none";
-            
-            var transporter =
-                nodemailer.createTransport({
-                    service: 'gmail',
-                    auth: {
-                        user: 'dndpagemaker@gmail.com',
-                        pass: 'DATZProject4@'
-                    }
-                });
-
-                var mailOptions = {
-                    from: 'dndpagemaker@gmail.com',
-                    to: email,
-                    subject: 'Password Verification for DnDPageMaker',
-                    text: 'Enter this code in the security code section: ' + SecurityCode
-                };
-
-                transporter.sendMail(mailOptions,
-                    function(err,info){
-                        if(error)
-                        {
-                          error = err;
-                        }
-                        else
-                        {
-                            console.log('Email sent: ' + info.response);
+          const results1 = await db.collection('Users').find({Email:email}).toArray();
+          {
+            if(results1 == 0)
+            {
+              try {        
+                const result = await db.collection('Users').insertOne(newUser);
+                error = "none";
+                
+                var transporter =
+                    nodemailer.createTransport({
+                        service: 'gmail',
+                        auth: {
+                            user: 'dndpagemaker@gmail.com',
+                            pass: 'DATZProject4@'
                         }
                     });
-            }  
-          catch(e)
-            {    
-                error = e.toString();  
+    
+                    var mailOptions = {
+                        from: 'dndpagemaker@gmail.com',
+                        to: email,
+                        subject: 'Password Verification for DnDPageMaker',
+                        text: 'Enter this code in the security code section: ' + SecurityCode
+                    };
+    
+                    transporter.sendMail(mailOptions,
+                        function(err,info){
+                            if(error)
+                            {
+                              error = err;
+                            }
+                            else
+                            {
+                                console.log('Email sent: ' + info.response);
+                            }
+                        });
+                }  
+              catch(e)
+                {    
+                    error = e.toString();  
+                }
+    
+                var ret = { error: error,};
+                res.status(200).json(ret);
             }
-
-            var ret = { error: error,};
-            res.status(200).json(ret);
+            else
+            {
+              var ret = { error: "Duplicate email detected" };  
+              res.status(200).json(ret);
+            }
+          }
+          
         }
         else
         {
-          var ret = { error: "Duplicate username and/or password detected" };  
+          var ret = { error: "Duplicate username detected" };  
           res.status(200).json(ret);
         }
           
@@ -674,6 +685,8 @@ exports.setApp = function ( app, client )
 
         const { username, password, email, securityCode} = req.body;
 
+        var securitycode =  "sc(" + securityCode + ")";
+
         const userUpdate = {
           "verification": true
         };
@@ -683,16 +696,76 @@ exports.setApp = function ( app, client )
         try
         {
             const db = client.db();
-            const results = await db.collection('Users').find({Login:username, Password:password , SecurityCode:securityCode, Email:email}).toArray();
+            const results = await db.collection('Users').find({Login:username, Password:password , SecurityCode:securitycode, Email:email}).toArray();
             if(results.length == 0)
             {
-              error = {Login:username, Password:password , SecurityCode:securityCode, Email:email};
+              error = "User not found"
             }
             else
             {
-              db.collection('Users').updateOne( {Login:username, Password:password , SecurityCode:securityCode, Email:email}, {$set:userUpdate});
-              error = {Login:username, Password:password , SecurityCode:securityCode, Email:email, userud: userUpdate};
+              db.collection('Users').updateOne( {Login:username, Password:password , SecurityCode:securitycode, Email:email}, {$set:userUpdate});
             }
+        }
+        catch(e)
+        {
+          error = e.toString();
+        }
+      
+      
+        var ret = { error: error};
+        
+        res.status(200).json(ret);   
+    });
+
+
+    app.post('/api/passwordResetEmail', async (req, res, next) => 
+    {
+        //Incoming: userID, objectID, change location, and the change 
+        //outgoing the updated info
+
+        const {email, securityCode} = req.body;
+
+        var sc = "sc(" + securityCode + ")";
+        
+        var error = '';
+    
+        try
+        {
+          const results = await db.collection('Users').find({Login:username, Password:password , SecurityCode:securitycode, Email:email}).toArray();
+          if(results.length == 0)
+          {
+            error = "No user found with that email";
+          }
+          else
+          {
+            var transporter =
+              nodemailer.createTransport({
+                  service: 'gmail',
+                  auth: {
+                      user: 'dndpagemaker@gmail.com',
+                      pass: 'DATZProject4@'
+                  }
+              });
+
+              var mailOptions = {
+                  from: 'dndpagemaker@gmail.com',
+                  to: email,
+                  subject: 'Password Reset for DnDPageMaker',
+                  text: 'Enter this code in the security code section: ' + sc + 'and go to this link: dndpagemaker.com/passwordreset'
+              };
+
+              transporter.sendMail(mailOptions,
+                  function(err,info){
+                      if(error)
+                      {
+                        error = err;
+                      }
+                      else
+                      {
+                          console.log('Email sent: ' + info.response);
+                      }
+                  });
+          }
         }
         catch(e)
         {

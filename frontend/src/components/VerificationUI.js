@@ -21,9 +21,8 @@ function Verification()
     {
         event.preventDefault();
 
-        var sc = "sc(" + securityCode.value + ")";
         var hashedPass = hashing(loginPassword.value)
-        var obj = {username:loginName.value,password:hashedPass,email:email.value, securityCode: sc};
+        var obj = {username:loginName.value,password:hashedPass,email:email.value, securityCode: securityCode.value};
         var js = JSON.stringify(obj);
         
         
@@ -44,11 +43,11 @@ function Verification()
             var res = response.data;
             if (res.error != "") 
             {
-            setMessage(res.error);
+                setMessage(res.error);
             }
             else 
             {	
-            console.log("verified");
+                setMessage("User is now verified");
             }
         })
         .catch(function (error) 

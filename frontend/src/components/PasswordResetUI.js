@@ -17,13 +17,15 @@ function PasswordReset()
 
     const [message,setMessage] = useState('');
 
-    const doRegister = async event => 
+
+    const doReset = async event => 
     {
         event.preventDefault();
-
+        
         var hashedPass = hashing(loginPassword.value)
-        var obj = {username:loginName.value,password:hashedPass,firstName:firstName.value,lastName:lastName.value,email:email.value, securityCode: securityCode.value};
+        var obj = {username:loginName.value,password:hashedPass,email:email.value, securityCode: securityCode.value};
         var js = JSON.stringify(obj);
+
         
         if(loginPassword != confimedPassword)
         {
@@ -59,22 +61,23 @@ function PasswordReset()
             {
                 console.log(error);
             });
-        } 
+        }
+    }
 
-            return(
-            <div id="loginDiv">
-                <span id="inner-title">ENTER YOUR INFORMATION TO CONFIRM YOUR IDENTITY</span><br />
-                <input type="text" id="loginName" placeholder="Username" ref={(c) => loginName = c}  /><br />
-                <input type="text" id="email" placeholder="Email" ref={(c) => email = c}  /><br />
-                <input type="text" id="code" placeholder="Security Code" ref={(c) => securityCode = c}  /><br />
-                <input type="password" id="loginPassword" placeholder="New Password" ref={(c) => loginPassword = c} /><br />
-                <input type="password" id="loginPassword" placeholder="Confirm Password" ref={(c) => confimedPassword = c} /><br />
-                <button className = "blue" onClick={doRegister}>Reset Password</button>
-                <span id="loginResult">{message}</span>
-            </div>
-            );
+        return(
+        <div id="loginDiv">
+            <span id="inner-title">ENTER YOUR INFORMATION TO CONFIRM YOUR IDENTITY</span><br />
+            <input type="text" id="loginName" placeholder="Username" ref={(c) => loginName = c}  /><br />
+            <input type="text" id="email" placeholder="Email" ref={(c) => email = c}  /><br />
+            <input type="text" id="code" placeholder="Security Code" ref={(c) => securityCode = c}  /><br />
+            <input type="password" id="loginPassword" placeholder="New Password" ref={(c) => loginPassword = c} /><br />
+            <input type="password" id="loginPassword" placeholder="Confirm Password" ref={(c) => confimedPassword = c} /><br />
+            <button className = "blue" onClick={doReset}>Reset Password</button>
+            <span id="loginResult">{message}</span>
+        </div>
+        );
         
-    }   
+      
 };
 
 export default PasswordReset;
