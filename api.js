@@ -344,7 +344,7 @@ exports.setApp = function ( app, client )
                         from: 'dndpagemaker@gmail.com',
                         to: email,
                         subject: 'Password Verification for DnDPageMaker',
-                        text: 'Enter this code in the security code section: ' + SecurityCode + 'of this link: dndpagemaker.heroku.com/verification.'
+                        text: 'Enter this code in the security code section: ' + SecurityCode + ' of this link: dndpagemaker.herokuapp.com/verification.'
                     };
     
                     transporter.sendMail(mailOptions,
@@ -729,7 +729,7 @@ exports.setApp = function ( app, client )
                   from: 'dndpagemaker@gmail.com',
                   to: email,
                   subject: 'Password Reset for DnDPageMaker',
-                  text: 'Enter this code in the security code section: ' + securityCode + 'and go to this link: dndpagemaker.com/passwordreset'
+                  text: 'Enter this code in the security code section: ' + securityCode + ' and go to this link: dndpagemaker.herokuapp.com/passwordreset'
               };
 
               transporter.sendMail(mailOptions,

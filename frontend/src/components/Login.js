@@ -116,7 +116,7 @@ function Login()
         <span id="loginResult">{message}</span>
         <p>Forgot your password? Provide your email and click this button to get a code and a link to use to reset your password.</p>
         <input type="text" id="email" placeholder="Email" ref={(c) => email = c} /><br />
-
+        <button className="blue" onClick={sendPasswordEmail}>Send Email</button> 
      </div>
     );
 };

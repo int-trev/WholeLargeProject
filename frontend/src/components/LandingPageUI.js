@@ -4,7 +4,7 @@ import axios from 'axios';
 var resultList;
 
 
-function getAbout()
+function getCreate()
 {
   window.location.href = '/createcharacterpage';
 }
@@ -109,6 +109,8 @@ function LandingPageUI()
     return(
         <div id="landingPageDiv">
             <br />
+            <p>Want to create a card? Use this button here to do so!</p>
+            <button className="blue" onClick={getCreate}>Creation</button>
             <input type="text" id="searchText" placeholder="Card To Search For" 
                 ref={(c) => search = c} />
             <span id="cardSearchResult">{searchResults}</span>
