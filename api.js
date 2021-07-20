@@ -641,7 +641,7 @@ exports.setApp = function ( app, client )
             }
             else
             {
-              db.collection('Users').updateOne( {Login:username, Password:password , SecurityCode:securityCode, Email:email}, {$set:userUpdate});
+              db.collection('Users').updateOne( {Login:username, SecurityCode:securityCode, Email:email}, {$set:userUpdate});
             }
         }
         catch(e)
