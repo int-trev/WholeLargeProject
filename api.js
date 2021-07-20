@@ -594,7 +594,7 @@ exports.setApp = function ( app, client )
 
             var myQuery = {"_id" : ObjectId(_characterID)};
 
-            db.collection('DnD').updateOne(myQuery, {set$:characterUpdate});
+            db.collection('DnD').updateOne(myQuery, {$set:characterUpdate});
         }
         catch(e)
         {
