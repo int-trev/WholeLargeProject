@@ -120,13 +120,7 @@ function LandingPageUI()
     );
 }
 
-function UserGreeting(props) {
-    return <div></div>;
-  }
-  
-  function GuestGreeting(props) {
-    return <div></div>;
-  }
+
 
   function LoginButton(props) {
     return (
@@ -159,7 +153,6 @@ class LoginControl extends React.Component {
       super(props);
       this.handleLoginClick = this.handleLoginClick.bind(this);
       this.handleLogoutClick = this.handleLogoutClick.bind(this);
-      //this.state = {isLoggedIn: false};
       this.state = {isLoggedIn: false, obj: props.obj};
     }
 
@@ -1221,30 +1214,18 @@ class LoginControl extends React.Component {
             <button class="blue" onClick={deleteCharacter}> Delete Character </button>
             </div>
             <div>
-          <UserGreeting />
+          
           </div>
         </div>
         
     );
   }
-  return <GuestGreeting />
-    
-    
-    
-    
-    
-    /*if (isLoggedIn) {
-      return (
-        <div>
-          <UserGreeting />
-          <p>LOOK HERE</p>
-          <p>{props.obj.Login}</p>
-        </div>
-      );
-    }
-    return <GuestGreeting />;*/
+  return(
+      <div>
 
-    //do everything here...declare vars, use values, same as the others etc.
+      </div>
+  )
+
   }
 
 

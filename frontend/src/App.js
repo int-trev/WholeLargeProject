@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 import './App.css';
 
 import LoginPage from './pages/LoginPage';
-import CardPage from './pages/CardPage';
 import LandingPage from './pages/LandingPage';
 import AboutUs from './pages/AboutUs';
 import CreateCharacterPage from './pages/CreateChar';
@@ -22,10 +21,6 @@ function App() {
           <LoginPage />
         </Route>
 
-        <Route path="/cards" exact>
-          <CardPage />
-        </Route>
-
         <Route path="/landing" exact>
           <LandingPage />
         </Route>
@@ -38,11 +33,9 @@ function App() {
           <CreateCharacterPage />
         </Route>
 
-
         <Route path = "/passwordreset" exact>
           <PasswordReset />
         </Route>
-
 
         <Route path = "/verification" exact>
           <Verification />

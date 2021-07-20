@@ -344,7 +344,7 @@ exports.setApp = function ( app, client )
                         from: 'dndpagemaker@gmail.com',
                         to: email,
                         subject: 'Password Verification for DnDPageMaker',
-                        text: 'Enter this code in the security code section: ' + SecurityCode
+                        text: 'Enter this code in the security code section: ' + SecurityCode + 'of this link: dndpagemaker.heroku.com/verification.'
                     };
     
                     transporter.sendMail(mailOptions,

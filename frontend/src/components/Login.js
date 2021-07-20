@@ -46,7 +46,7 @@ function Login()
             }
             else 
             {	
-                window.location.href = '/passwordreset';
+                setMessage('Email sent');
             }
         })
         .catch(function (error) 

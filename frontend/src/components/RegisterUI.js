@@ -19,7 +19,6 @@ function Register()
 
     const doRegister = async event => 
     {
-        event.preventDefault();
 
         var hashedPass = hashing(loginPassword.value);
         var sc = Math.floor((Math.random() * 8999) + 1000);
