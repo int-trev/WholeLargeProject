@@ -27,7 +27,7 @@ function PasswordReset()
         var js = JSON.stringify(obj);
 
         
-        if(loginPassword != confimedPassword)
+        if(loginPassword.value !== confimedPassword.value)
         {
             setMessage("Passwords do not match");
         }
