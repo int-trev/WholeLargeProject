@@ -14,8 +14,6 @@ function Register()
     var firstName;
     var lastName;
     var email;
-    var sc = Math.floor((Math.random() * 8999) + 1000);
-    console.log(securityCode);
 
     const [message,setMessage] = useState('');
 
@@ -24,6 +22,7 @@ function Register()
         event.preventDefault();
 
         var hashedPass = hashing(loginPassword.value);
+        var sc = Math.floor((Math.random() * 8999) + 1000);
         var obj = {username:loginName.value,password:hashedPass,firstName:firstName.value,lastName:lastName.value,email:email.value, SecurityCode: sc};
         var js = JSON.stringify(obj);
 
