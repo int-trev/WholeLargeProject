@@ -312,9 +312,11 @@ exports.setApp = function ( app, client )
         // outgoing: error  
         var error = '';  
         var nodemailer = require('nodemailer');
+
         
-        const { username, password, firstName, lastName, email, SecurityCode} = req.body;  
-        const newUser = {Login:username,Password:password,FirstName:firstName, LastName:lastName, Email:email, SecurityCode:SecurityCode, verification:false };
+        const { username, password, firstName, lastName, email, SecurityCode} = req.body;
+        var securityCode = "sc(" + SecurityCode + ")";
+        const newUser = {Login:username,Password:password,FirstName:firstName, LastName:lastName, Email:email, SecurityCode:securityCode, verification:false };
         const db = client.db();
 
         const results = await db.collection('Users').find({Login:username}).toArray();
@@ -621,20 +623,7 @@ exports.setApp = function ( app, client )
         // Incoming: userID, objectID, change location, and the change 
         // outgoing the updated info
 
-        const { username, password, email, securityCode , jwtToken} = req.body;
-        try
-        {
-          if( token.isExpired(jwtToken))
-          {
-            var r = {error:'The JWT is no longer valid', jwtToken: ''};
-            res.status(200).json(r);
-            return;
-          }
-        } 
-        catch(e)
-        {
-          console.log(e.message);
-        }
+        const { username, password, email, securityCode} = req.body;
 
         const userUpdate = {
           Password:password
@@ -645,7 +634,7 @@ exports.setApp = function ( app, client )
         try
         {
             const db = client.db();
-            const results = await db.collection('Users').find({Login:username,Password:password, SecurityCode: securityCode, Email:email}).toArray();
+            const results = await db.collection('Users').find({Login:username, SecurityCode: securityCode, Email:email}).toArray();
             if(results == 0)
             {
               error = "Information incorrect"
@@ -660,18 +649,8 @@ exports.setApp = function ( app, client )
           error = e.toString();
         }
       
-        var refreshedToken = null;
-        try
-        {
-          refreshedToken = token.refresh(jwtToken).accessToken;
-          console.log(refreshedToken);
-        }
-        catch(e)
-        {
-          console.log(e.message);
-        }
       
-        var ret = { error: error, jwtToken: refreshedToken };
+        var ret = { error: error};
         
         res.status(200).json(ret);   
     });
@@ -730,7 +709,7 @@ exports.setApp = function ( app, client )
     
         try
         {
-          const results = await db.collection('Users').find({Login:username, Password:password , SecurityCode:securitycode, Email:email}).toArray();
+          const results = await db.collection('Users').find({Email:email}).toArray();
           if(results.length == 0)
           {
             error = "No user found with that email";
@@ -750,7 +729,7 @@ exports.setApp = function ( app, client )
                   from: 'dndpagemaker@gmail.com',
                   to: email,
                   subject: 'Password Reset for DnDPageMaker',
-                  text: 'Enter this code in the security code section: ' + sc + 'and go to this link: dndpagemaker.com/passwordreset'
+                  text: 'Enter this code in the security code section: ' + securityCode + 'and go to this link: dndpagemaker.com/passwordreset'
               };
 
               transporter.sendMail(mailOptions,

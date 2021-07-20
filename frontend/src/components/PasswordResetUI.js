@@ -21,9 +21,9 @@ function PasswordReset()
     const doReset = async event => 
     {
         event.preventDefault();
-        
+        var securitycode =  "sc(" + securityCode.value + ")";
         var hashedPass = hashing(loginPassword.value)
-        var obj = {username:loginName.value,password:hashedPass,email:email.value, securityCode: securityCode.value};
+        var obj = {username:loginName.value,password:hashedPass,email:email.value, securityCode: securitycode};
         var js = JSON.stringify(obj);
 
         
