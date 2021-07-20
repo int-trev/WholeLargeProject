@@ -328,7 +328,6 @@ exports.setApp = function ( app, client )
             {
               try {        
                 const result = await db.collection('Users').insertOne(newUser);
-                error = "none";
                 
                 var transporter =
                     nodemailer.createTransport({

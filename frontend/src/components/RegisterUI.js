@@ -43,7 +43,7 @@ function Register()
             .then(function (response) 
         {
             var res = response.data;
-            if (res.error === "Duplicate username and/or password detected") 
+            if (res.error) 
             {
                 setMessage(res.error);
             }
