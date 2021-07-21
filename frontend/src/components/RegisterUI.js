@@ -63,8 +63,7 @@ function Register()
         <input type="text" id="fName" placeholder="First Name" ref={(c) => firstName = c}  /><br />
         <input type="text" id="lName" placeholder="Last Name" ref={(c) => lastName = c}  /><br />
         <input type="text" id="email" placeholder="Email" ref={(c) => email = c}  /><br />
-        <input type="submit" id="loginButton" className="buttons" value = "Do It"
-          onClick={doRegister} />
+        <button onClick={doRegister}>Register</button>
         <span id="loginResult">{message}</span>
      </div>
     );

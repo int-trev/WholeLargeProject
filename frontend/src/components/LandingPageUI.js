@@ -6,7 +6,7 @@ var resultList;
 
 function getCreate()
 {
-  window.location.href = '/createcharacterpage';
+  window.location.href = '/createcharacter';
 }
 
 
@@ -110,11 +110,12 @@ function LandingPageUI()
         <div id="landingPageDiv">
             <br />
             <p>Want to create a card? Use this button here to do so!</p>
-            <button className="blue" onClick={getCreate}>Creation</button>
+            <button  onClick={getCreate}>Creation</button>
+            <br />
             <input type="text" id="searchText" placeholder="Card To Search For" 
                 ref={(c) => search = c} />
             <span id="cardSearchResult">{searchResults}</span>
-             <button className="blue" onClick={searchCard}>Search</button>
+             <button  onClick={searchCard}>Search</button>
              <div id="component">
                     <span>{resultss}</span>
              </div>
@@ -1212,8 +1213,8 @@ class LoginControl extends React.Component {
                 </table>
             </div>
             <div>
-            <button class="blue" onClick={updateCharacter}> Update Character </button>
-            <button class="blue" onClick={deleteCharacter}> Delete Character </button>
+            <button  onClick={updateCharacter}> Update Character </button>
+            <button  onClick={deleteCharacter}> Delete Character </button>
             </div>
             <div>
           

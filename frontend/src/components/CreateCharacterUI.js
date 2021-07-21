@@ -148,8 +148,6 @@ function CreateCharacterUI()
     var search = '';
 
     const [message,setMessage] = useState('');
-    const [searchResults,setResults] = useState('');
-    const [cardList,setCardList] = useState('');
 
     var _ud = localStorage.getItem('user_data');
     var ud = JSON.parse(_ud);
@@ -304,7 +302,7 @@ function CreateCharacterUI()
             }
             else
             {
-                console.log(res);
+                setMessage("Character has been added");
                 storage.storeToken({accessToken:retTok});
             }
         })
@@ -317,7 +315,7 @@ function CreateCharacterUI()
 
     return(
         <div id="landingPageDiv">
-            <button type="button" id="landingButton" class="buttons" 
+            <button type="button" 
                 onClick={getLanding}> Return to Landing </button><br />
             <br />
             <div>
@@ -974,7 +972,7 @@ function CreateCharacterUI()
                 </table>
             </div>
             <div>
-            <button type="button" id="addCardButton" class="buttons" 
+            <button type="button" 
                 onClick={addCharacter}> Add Character </button><br />
             </div>
         </div>

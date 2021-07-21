@@ -63,7 +63,7 @@ function Verification()
             <input type="password" id="loginPassword" placeholder="Password" ref={(c) => loginPassword = c} /><br />
             <input type="text" id="email" placeholder="Email" ref={(c) => email = c}  /><br />
             <input type="text" id="code" placeholder="Security Code" ref={(c) => securityCode = c}  /><br />
-            <button className = "blue" onClick={doVerification}>Verify</button>
+            <button  onClick={doVerification}>Verify</button>
             <span id="loginResult">{message}</span>
         </div>
         );

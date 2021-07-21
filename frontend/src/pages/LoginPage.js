@@ -27,9 +27,9 @@ const LoginPage = () =>
             <Login />
           </div>
           <h1>About Us</h1>
-          <button class="blue" onClick={getAbout}>About Us</button>
+          <button  onClick={getAbout}>About Us</button>
           <p>Don't have an account? Create one here!</p>
-          <button class = "blue" onClick={getNewUser}>Sign Up Here!</button>
+          <button  onClick={getNewUser}>Sign Up Here!</button>
       </div>
     );
 };
