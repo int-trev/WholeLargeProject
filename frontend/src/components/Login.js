@@ -20,7 +20,7 @@ function Login()
     const sendPasswordEmail = async event =>
     {
         event.preventDefault();
-
+        console.log(email.value);
         var sc = Math.floor((Math.random() * 8999) + 1000);
         var obj = {email: email.value, securityCode: sc};
         var js = JSON.stringify(obj);
