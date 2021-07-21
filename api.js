@@ -710,6 +710,7 @@ exports.setApp = function ( app, client )
     
         try
         {
+          const db = client.db();
           const results = await db.collection('Users').find({Email:email}).toArray();
           if(results.length == 0)
           {
