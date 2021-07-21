@@ -22,7 +22,7 @@ function Login()
         event.preventDefault();
 
         var sc = Math.floor((Math.random() * 8999) + 1000);
-        var obj = {email: email, securityCode: sc};
+        var obj = {email: email.value, securityCode: sc};
         var js = JSON.stringify(obj);
 
         var config = 
