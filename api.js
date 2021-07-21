@@ -448,7 +448,7 @@ exports.setApp = function ( app, client )
 
         const {userId, objectId, userName,characterName, class1, class1Lvl, class2, class2Lvl, class3, class3Lvl, backGround, race, alignment, exp, acrobatics, animalHandling, arcana, athletics, deception, history, 
             insight, intimidation, investigation, medicine, nature, perception, performance, persuasion, religion, sleightOfhand, stealth, survival, str, dex, con, int, wis,
-              strSave, dexSave, conSave, intSave, wisSave, chaSave, armorClass, initiative, speed, maxHP, hitDice, attack1Name, attack1Bonus ,attack1Type, attack2Name,
+              strSave, dexSave, conSave, intSave, wisSave, chaSave, armorClass, initiative, speed, maxHP, currHP, hitDice, attack1Name, attack1Bonus ,attack1Type, attack2Name,
              attack2Bonus, attack2Type, attack3Name, attack3Bonus, attack13ype, ammoBased, passivePerception, profLanguages, cp, sp, ep, gp, pp, equipment, featTraits, age, height, weight,
              eyes, skin, hair, picturePlaceholder, alliedOrganizations, allies, backStory, addfeatTraits, treasure, spellClass, spellAbility, spellsaveDC, spellBonus,
              cantrips, lvl1Spellslots, lvl1Prepspells, lvl1Expended,lvl2Spellslots, lvl2Prepspells, lvl2Expended, lvl3Spellslots, lvl3Prepspells, lvl3Expended, lvl4Spellslots, lvl4Prepspells, lvl4Expended, 
@@ -467,7 +467,7 @@ exports.setApp = function ( app, client )
         {
         console.log(e.message);
         }
-        var current = new Date();
+        var current = currHP;
         const characterUpdate = 
         { userName:userName,
           UserId:userId,        
@@ -617,7 +617,7 @@ exports.setApp = function ( app, client )
         res.status(200).json(ret);   
     });
 
-
+    // Done
     app.post('/api/updatePassword', async (req, res, next) => 
     {
         // Incoming: userID, objectID, change location, and the change 
@@ -655,7 +655,7 @@ exports.setApp = function ( app, client )
         res.status(200).json(ret);   
     });
 
-
+    // Done
     app.post('/api/verifyUser', async (req, res, next) => 
     {
         //Incoming: userID, objectID, change location, and the change 
@@ -696,6 +696,7 @@ exports.setApp = function ( app, client )
     });
 
 
+    // Done
     app.post('/api/passwordResetEmail', async (req, res, next) => 
     {
         //Incoming: userID, objectID, change location, and the change 
