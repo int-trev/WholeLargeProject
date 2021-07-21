@@ -702,6 +702,8 @@ exports.setApp = function ( app, client )
         //Incoming: userID, objectID, change location, and the change 
         //outgoing the updated info
 
+        var nodemailer = require('nodemailer');
+
         const {email, securityCode} = req.body;
 
         var sc = "sc(" + securityCode + ")";
