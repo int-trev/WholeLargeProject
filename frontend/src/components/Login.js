@@ -108,13 +108,14 @@ function Login()
     }
 
     return(
-      <div id="loginDiv">
+      <div className = "loginDiv">
         <span id="inner-title">PLEASE LOG IN</span><br />
         <input type="text" id="loginName" placeholder="Username" ref={(c) => loginName = c}  /><br />
         <input type="password" id="loginPassword" placeholder="Password" ref={(c) => loginPassword = c} /><br />
-        <button  onClick={doLogin}>Login</button>
+        <button  onClick={doLogin}>Login</button> <br /> <br />
         <span id="loginResult">{message}</span>
-        <p>Forgot your password? Provide your email and click this button to get a code and a link to use to reset your password.</p>
+        <p>Forgot your password?</p>
+        <p>Provide your email to reset.</p>
         <input type="text" id="email" placeholder="Email" ref={(c) => email = c} /><br />
         <button  onClick={sendPasswordEmail}>Send Email</button> 
      </div>

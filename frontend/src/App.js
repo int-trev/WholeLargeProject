@@ -4,7 +4,6 @@ import './App.css';
 
 import LoginPage from './pages/LoginPage';
 import LandingPage from './pages/LandingPage';
-import AboutUs from './pages/AboutUs';
 import CreateCharacterPage from './pages/CreateChar';
 import Register from './pages/Register';
 import PasswordReset from './pages/PasswordResetPage';
@@ -23,10 +22,6 @@ function App() {
 
         <Route path="/landing" exact>
           <LandingPage />
-        </Route>
-
-        <Route path = "/about" exact>
-          <AboutUs />
         </Route>
 
         <Route path = "/createcharacter" exact>

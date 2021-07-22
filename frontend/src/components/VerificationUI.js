@@ -57,7 +57,7 @@ function Verification()
         
     }
         return(
-        <div id="loginDiv">
+        <div className="loginDiv">
             <span id="inner-title">ENTER YOUR INFORMATION TO CONFIRM YOUR IDENTITY</span><br />
             <input type="text" id="loginName" placeholder="Username" ref={(c) => loginName = c}  /><br />
             <input type="password" id="loginPassword" placeholder="Password" ref={(c) => loginPassword = c} /><br />
