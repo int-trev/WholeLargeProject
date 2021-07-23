@@ -408,7 +408,7 @@ exports.setApp = function ( app, client )
         fn = results[0].FirstName;
         ln = results[0].LastName;
         
-        if (results[0].verification === false)
+        if (results[0].verification == false || results[0].verification == "false")
         {
           ret = {error:"User not verified"};
         }
