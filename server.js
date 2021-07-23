@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 require('dotenv').config();
 const url = process.env.MONGODB_URI;
