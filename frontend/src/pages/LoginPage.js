@@ -16,7 +16,6 @@ const LoginPage = () =>
 
     return(
       <div>
-        <Scroll />
         <PageTitle />
         <Login />
         <p>Don't have an account? Create one here!</p>

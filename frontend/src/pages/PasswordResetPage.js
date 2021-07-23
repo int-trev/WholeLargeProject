@@ -10,7 +10,6 @@ const Reset = () =>
 {
     return(
         <div>
-            <Scroll />
             <PageTitle />
             <PasswordResetUI />
         </div>

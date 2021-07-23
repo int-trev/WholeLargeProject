@@ -11,7 +11,6 @@ const Landing = () =>
 {
     return(
         <div>
-            <Scroll />
             <PageTitle />
             <LoggedInName />
             <LandingPageUI />

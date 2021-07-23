@@ -10,7 +10,6 @@ const CreateChar = () =>
 {
     return(
         <div>
-            <Scroll />
             <PageTitle />
             <LoggedInName />
             <Create />

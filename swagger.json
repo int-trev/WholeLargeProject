@@ -1,0 +1,1129 @@
+swagger: "2.0"
+info:
+  description: "This is a sample server Petstore server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters."
+  version: "1.0.0"
+  title: "Swagger Petstore"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "apiteam@swagger.io"
+  license:
+    name: "Apache 2.0"
+    url: "https://dndpagemaker.herokuapp.com/api/"
+
+paths:
+  /deleteDND:
+    post:
+      tags:
+      -  DnD
+      summary: deletes an DnD Character
+      operationId: deleteDND
+      description: deletes a DnD character
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: deleteItem
+        description: Item to delete
+        schema:
+          $ref: '#/definitions/DeleteDnD'
+      responses:
+        200:
+          description: OK
+        404:
+          description: URL Not Found
+  /searchDnD:
+    post:
+      tags:
+      -  DnD
+      summary: finds a character sheet to display
+      operationId: searchDnD
+      description: displays sought after character sheet
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: searchItem
+        description: Item to delete
+        schema:
+          $ref: '#/definitions/Search'
+      responses:
+        200:
+          description: OK
+        404:
+          description: URL Not Found
+  /addDnD:
+    post:
+      tags:
+      - DnD
+      summary: Adds a DnD character
+      operationId: addDnD
+      description: Adds a DnD character sheet document
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: DnDItem
+        description: sheet
+        schema:
+          $ref: '#/definitions/addDnD'
+      responses:
+        200:
+          description: OK
+        404:
+          description: URL Not Found
+  /updateDnD:
+    post:
+      tags:
+      - DnD
+      summary: Updates a Character
+      operationId: updateDnD
+      description: Searches a specific character and updates it
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: updateItem
+        description: update
+        schema:
+          $ref: '#/definitions/UpdateDnD'
+      responses:
+        200:
+          description: OK
+        404:
+          description: URL Not Found
+  /login:
+    post:
+      tags:
+      - Users
+      summary: sees if there is an existing user to sign in as
+      operationId: login
+      description: login to the account
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: loginItem
+        description: login
+        schema:
+          $ref: '#/definitions/login'
+      responses:
+        200:
+          description: OK
+        404:
+          description: URL Not Found
+  /addUser:
+    post:
+      tags:
+      - Users
+      summary: sees if there is an existing user and if not add one
+      operationId: addUser
+      description: Makes a new user
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: userItem
+        description: user
+        schema:
+          $ref: '#/definitions/Users'
+      responses:
+        200:
+          description: OK
+        404:
+          description: URL Not Found
+          
+definitions:          
+  Search:
+    type: object
+    required:
+    - userId
+    - search
+    - jwtToken
+    properties:
+      userId:
+        type: string
+        example: "dklfja;"
+      search:
+        type: string
+        example: "doesitMatter"
+      jwtToken:
+        type: string
+        example: "doesitMatter"
+  DeleteDnD:
+    type: object
+    required:
+    - userId
+    - search
+    - jwtToken
+    properties:
+      userId:
+        type: string
+        example: "dklfja;"
+      search:
+        type: string
+        example: "doesitMatter"
+      jwtToken:
+        type: string
+        example: "doesitMatter"
+  Users:
+    type: object
+    required:
+    - username
+    - password
+    - firstName
+    - lastName
+    - email
+    - securityCode
+    properties:
+     username:
+        type: string
+        example: "bl"
+     password:
+        type: string
+        example: "bl"
+     firstName:
+        type: string
+        example: "bl"
+     lasrName:
+        type: string
+        example: "bl"
+     email:
+        type: string
+        example: "bl"
+     securityCode:
+        type: string
+        example: "bl"
+  login:
+    type: object
+    required:
+    - login
+    - password
+    properties:
+     login:
+        type: string
+        example: "black443"
+     password:
+        type: string
+        example: "black443"
+  addDnD:
+    type: object
+    required:
+    - userId
+    - userName
+    - characterName
+    - class1
+    - class1Lvl
+    - class2
+    - class2Lvl
+    - class3
+    - class3Lvl
+    - backGround
+    - race
+    - alignment
+    - exp
+    - acrobatics
+    - animalHandling
+    - arcana
+    - athletics
+    - deception
+    - history 
+    - insight 
+    - intimidation
+    - investigation
+    - medicine
+    - nature
+    - perception
+    - performance
+    - persuasion
+    - religion
+    - sleightOfhand
+    - stealth
+    - survival
+    - str
+    - dex
+    - con
+    - int
+    - wis
+    - strSave
+    - dexSave
+    - conSave
+    - intSave
+    - wisSave
+    - chaSave
+    - armorClass
+    - initiative
+    - speed 
+    - maxHP
+    - hitDice
+    - attack1Name
+    - attack1Bonus 
+    - attack1Type
+    - attack2Name
+    - attack2Bonus
+    - attack2Type
+    - attack3Name
+    - attack3Bonus
+    - attack13ype
+    - ammoBased
+    - passivePerception
+    - profLanguages
+    - cp
+    - sp
+    - ep
+    - gp
+    - pp
+    - equipment
+    - featTraits
+    - age
+    - height
+    - weight
+    - eyes
+    - skin
+    - hair
+    - picturePlaceholder
+    - alliedOrganizations
+    - allies
+    - backStory
+    - addfeatTraits
+    - treasure
+    - spellClass
+    - spellAbility
+    - spellsaveDC
+    - spellBonus
+    - cantrips
+    - lvl1Spellslots
+    - lvl1Prepspells
+    - lvl1Expended
+    - lvl2Spellslots
+    - lvl2Prepspells
+    - lvl2Expended
+    - lvl3Spellslots
+    - lvl3Prepspells
+    - lvl3Expended
+    - lvl4Spellslots
+    - lvl4Prepspells
+    - lvl4Expended- 
+    - lvl5Spellslots
+    - lvl5Prepspells
+    - lvl5Expended
+    - lvl6Spellslots
+    - lvl6Prepspells
+    - lvl6Expended
+    - lvl7Spellslots
+    - lvl7Prepspells
+    - lvl7Expended
+    - lvl8Spellslots
+    - lvl8Prepspells
+    - lvl8Expended
+    - lvl9Spellslots
+    - lvl9Prepspells
+    - lvl9Expended
+    - jwtToken
+    properties:
+      userName: 
+        type: string
+        example: "bl"
+      UserId:
+        type: string
+        example: "bl"        
+      characterName: 
+        type: string
+        example: "bl"
+      class1: 
+        type: string
+        example: "bl"
+      class1lvl:
+        type: string
+        example: "bl"
+      class2: 
+        type: string
+        example: "bl"
+      class2lvl:
+        type: string
+        example: "bl"
+      class3: 
+        type: string
+        example: "bl"
+      class3lvl:
+        type: string
+        example: "bl"
+      backGround: 
+        type: string
+        example: "bl"
+      race:
+        type: string
+        example: "bl"
+      alignment: 
+        type: string
+        example: "bl"
+      exp:
+        type: string
+        example: "bl"
+      acrobatics:
+        type: string
+        example: "bl"
+      animalHandling:
+        type: string
+        example: "bl"
+      arcana:
+        type: string
+        example: "bl"
+      athletics:
+        type: string
+        example: "bl"
+      deception:
+        type: string
+        example: "bl"
+      history:
+        type: string
+        example: "bl"
+      insight:
+        type: string
+        example: "bl"
+      intimidation:
+        type: string
+        example: "bl"
+      investigation:
+        type: string
+        example: "bl"
+      medicine:
+        type: string
+        example: "bl"
+      nature:
+        type: string
+        example: "bl"
+      perception:
+        type: string
+        example: "bl"
+      performance:
+        type: string
+        example: "bl"
+      persuasion:
+        type: string
+        example: "bl"
+      religion: 
+        type: string
+        example: "bl"
+      sleightOfhand:
+        type: string
+        example: "bl"
+      stealth:
+        type: string
+        example: "bl"
+      survival:
+        type: string
+        example: "bl"
+      str:
+        type: string
+        example: "bl"
+      dex:
+        type: string
+        example: "bl"
+      con:
+        type: string
+        example: "bl"
+      int:
+        type: string
+        example: "bl"
+      wis:
+        type: string
+        example: "bl"
+      strSave:
+        type: string
+        example: "bl"
+      dexSave:
+        type: string
+        example: "bl"
+      conSave:
+        type: string
+        example: "bl"
+      intSave:
+        type: string
+        example: "bl"
+      wisSave:
+        type: string
+        example: "bl"
+      chaSave:
+        type: string
+        example: "bl"
+      armorClass:
+        type: string
+        example: "bl"
+      initiative:
+        type: string
+        example: "bl"
+      speed: 
+        type: string
+        example: "bl" 
+      maxHP:
+        type: string
+        example: "bl"
+      hitDice:  
+        type: string
+        example: "bl" 
+      attack1Name: 
+        type: string
+        example: "bl" 
+      attack1Bonus:  
+        type: string
+        example: "bl"
+      attack1Type: 
+        type: string
+        example: "bl" 
+      attack2Name: 
+        type: string
+        example: "bl"
+      attack2Bonus: 
+        type: string
+        example: "bl" 
+      attack2Type: 
+        type: string
+        example: "bl" 
+      attack3Name: 
+        type: string
+        example: "bl" 
+      attack3Bonus: 
+        type: string
+        example: "bl" 
+      attack13ype: 
+        type: string
+        example: "bl" 
+      ammoBased: 
+        type: string
+        example: "bl" 
+      passivePerception: 
+        type: string
+        example: "bl" 
+      profLanguages: 
+        type: string
+        example: "bl" 
+      cp:
+        type: string
+        example: "bl"
+      sp:
+        type: string
+        example: "bl"
+      ep:
+        type: string
+        example: "bl"
+      gp:
+        type: string
+        example: "bl"
+      pp:
+        type: string
+        example: "bl"
+      equipment: 
+        type: string
+        example: "bl" 
+      featTraits: 
+        type: string
+        example: "bl" 
+      age:
+        type: string
+        example: "bl"
+      height: 
+        type: string
+        example: "bl" 
+      weight:
+        type: string
+        example: "81 kg"
+      eyes: 
+        type: string
+        example: "bl" 
+      skin: 
+        type: string
+        example: "bl" 
+      hair: 
+        type: string
+        example: "bl" 
+      picturePlaceholder: 
+        type: string
+        example: "bl" 
+      alliedOrganizations: 
+        type: string
+        example: "bl" 
+      allies: 
+        type: string
+        example: "bl" 
+      backStory: 
+        type: string
+        example: "bl" 
+      addfeatTraits:
+        type: string
+        example: "bl" 
+      treasure: 
+        type: string
+        example: "bl" 
+      spellClass: 
+        type: string
+        example: "bl" 
+      spellAbility: 
+        type: string
+        example: "bl" 
+      spellsaveDC:
+        type: string
+        example: "bl"
+      spellBonus:
+        type: string
+        example: "bl"
+      cantrips: 
+        type: string
+        example: "bl" 
+      lvl1Spellslots:
+        type: string
+        example: "bl"
+      lvl1Prepspells: 
+        type: string
+        example: "bl" 
+      lvl1Expended:
+        type: string
+        example: "bl"
+      lvl2Spellslots:
+        type: string
+        example: "bl"
+      lvl2Prepspells: 
+        type: string
+        example: "bl" 
+      lvl2Expended:
+        type: string
+        example: "bl"
+      lvl3Spellslots:
+        type: string
+        example: "bl"
+      lvl3Prepspells: 
+        type: string
+        example: "bl" 
+      lvl3Expended:
+        type: string
+        example: "bl"
+      lvl4Spellslots:
+        type: string
+        example: "bl"
+      lvl4Prepspells: 
+        type: string
+        example: "bl" 
+      lvl4Expended:
+        type: string
+        example: "bl"
+      lvl5Spellslots:
+        type: string
+        example: "bl"
+      lvl5Prepspells: 
+        type: string
+        example: "bl" 
+      lvl5Expended:
+        type: string
+        example: "bl"
+      lvl6Spellslots:
+        type: string
+        example: "bl"
+      lvl6Prepspells: 
+        type: string
+        example: "bl" 
+      lvl6Expended:
+        type: string
+        example: "bl"
+      lvl7Spellslots:
+        type: string
+        example: "bl"
+      lvl7Prepspells: 
+        type: string
+        example: "bl" 
+      lvl7Expended:
+        type: string
+        example: "bl"
+      lvl8Spellslots:
+        type: string
+        example: "bl"
+      lvl8Prepspells: 
+        type: string
+        example: "bl" 
+      lvl8Expended:
+        type: string
+        example: "bl"
+      lvl9Spellslots:
+        type: string
+        example: "bl"
+      lvl9Prepspells: 
+        type: string
+        example: "bl" 
+      lvl9Expendedlvl9:
+        type: string
+        example: "bl"
+  UpdateDnD:
+    type: object
+    required:
+    - userId
+    - userName
+    - characterName
+    - class1
+    - class1Lvl
+    - class2
+    - class2Lvl
+    - class3
+    - class3Lvl
+    - backGround
+    - race
+    - alignment
+    - exp
+    - acrobatics
+    - animalHandling
+    - arcana
+    - athletics
+    - deception
+    - history 
+    - insight 
+    - intimidation
+    - investigation
+    - medicine
+    - nature
+    - perception
+    - performance
+    - persuasion
+    - religion
+    - sleightOfhand
+    - stealth
+    - survival
+    - str
+    - dex
+    - con
+    - int
+    - wis
+    - strSave
+    - dexSave
+    - conSave
+    - intSave
+    - wisSave
+    - chaSave
+    - armorClass
+    - initiative
+    - speed 
+    - maxHP
+    - current
+    - hitDice
+    - attack1Name
+    - attack1Bonus 
+    - attack1Type
+    - attack2Name
+    - attack2Bonus
+    - attack2Type
+    - attack3Name
+    - attack3Bonus
+    - attack13ype
+    - ammoBased
+    - passivePerception
+    - profLanguages
+    - cp
+    - sp
+    - ep
+    - gp
+    - pp
+    - equipment
+    - featTraits
+    - age
+    - height
+    - weight
+    - eyes
+    - skin
+    - hair
+    - picturePlaceholder
+    - alliedOrganizations
+    - allies
+    - backStory
+    - addfeatTraits
+    - treasure
+    - spellClass
+    - spellAbility
+    - spellsaveDC
+    - spellBonus
+    - cantrips
+    - lvl1Spellslots
+    - lvl1Prepspells
+    - lvl1Expended
+    - lvl2Spellslots
+    - lvl2Prepspells
+    - lvl2Expended
+    - lvl3Spellslots
+    - lvl3Prepspells
+    - lvl3Expended
+    - lvl4Spellslots
+    - lvl4Prepspells
+    - lvl4Expended- 
+    - lvl5Spellslots
+    - lvl5Prepspells
+    - lvl5Expended
+    - lvl6Spellslots
+    - lvl6Prepspells
+    - lvl6Expended
+    - lvl7Spellslots
+    - lvl7Prepspells
+    - lvl7Expended
+    - lvl8Spellslots
+    - lvl8Prepspells
+    - lvl8Expended
+    - lvl9Spellslots
+    - lvl9Prepspells
+    - lvl9Expended
+    - jwtToken
+    properties:
+      userName: 
+        type: string
+        example: "bl"
+      UserId: 
+        type: string
+        example: "bl"        
+      characterName: 
+        type: string
+        example: "bl"
+      class1: 
+        type: string
+        example: "bl"
+      class1lvl:
+        type: string
+        example: "bl"
+      class2: 
+        type: string
+        example: "bl"
+      class2lvl:
+        type: string
+        example: "bl"
+      class3: 
+        type: string
+        example: "bl"
+      class3lvl:
+        type: string
+        example: "bl"
+      backGround: 
+        type: string
+        example: "bl"
+      race:
+        type: string
+        example: "bl"
+      alignment: 
+        type: string
+        example: "bl"
+      exp:
+        type: string
+        example: "bl"
+      acrobatics:
+        type: string
+        example: "bl"
+      animalHandling:
+        type: string
+        example: "bl"
+      arcana:
+        type: string
+        example: "bl"
+      athletics:
+        type: string
+        example: "bl"
+      deception:
+        type: string
+        example: "bl"
+      history:
+        type: string
+        example: "bl"
+      insight:
+        type: string
+        example: "bl"
+      intimidation:
+        type: string
+        example: "bl"
+      investigation:
+        type: string
+        example: "bl"
+      medicine:
+        type: string
+        example: "bl"
+      nature:
+        type: string
+        example: "bl"
+      perception:
+        type: string
+        example: "bl"
+      performance:
+        type: string
+        example: "bl"
+      persuasion:
+        type: string
+        example: "bl"
+      religion: 
+        type: string
+        example: "bl"
+      sleightOfhand:
+        type: string
+        example: "bl"
+      stealth:
+        type: string
+        example: "bl"
+      survival:
+        type: string
+        example: "bl"
+      str:
+        type: string
+        example: "bl"
+      dex:
+        type: string
+        example: "bl"
+      con:
+        type: string
+        example: "bl"
+      int:
+        type: string
+        example: "bl"
+      wis:
+        type: string
+        example: "bl"
+      strSave:
+        type: string
+        example: "bl"
+      dexSave:
+        type: string
+        example: "bl"
+      conSave:
+        type: string
+        example: "bl"
+      intSave:
+        type: string
+        example: "bl"
+      wisSave:
+        type: string
+        example: "bl"
+      chaSave:
+        type: string
+        example: "bl"
+      armorClass:
+        type: string
+        example: "bl"
+      initiative:
+        type: string
+        example: "bl"
+      speed: 
+        type: string
+        example: "bl" 
+      maxHP:
+        type: string
+        example: "bl"
+      current:
+        type: string
+        example: "b1"
+      hitDice:  
+        type: string
+        example: "bl" 
+      attack1Name: 
+        type: string
+        example: "bl" 
+      attack1Bonus:  
+        type: string
+        example: "bl"
+      attack1Type: 
+        type: string
+        example: "bl" 
+      attack2Name: 
+        type: string
+        example: "bl"
+      attack2Bonus: 
+        type: string
+        example: "bl" 
+      attack2Type: 
+        type: string
+        example: "bl" 
+      attack3Name: 
+        type: string
+        example: "bl" 
+      attack3Bonus: 
+        type: string
+        example: "bl" 
+      attack13ype: 
+        type: string
+        example: "bl" 
+      ammoBased: 
+        type: string
+        example: "bl" 
+      passivePerception: 
+        type: string
+        example: "bl" 
+      profLanguages:
+        type: string
+        example: "bl" 
+      cp:
+        type: string
+        example: "bl"
+      sp:
+        type: string
+        example: "bl"
+      ep:
+        type: string
+        example: "bl"
+      gp:
+        type: string
+        example: "bl"
+      pp:
+        type: string
+        example: "bl"
+      equipment: 
+        type: string
+        example: "bl" 
+      featTraits: 
+        type: string
+        example: "bl" 
+      age:
+        type: string
+        example: "bl"
+      height: 
+        type: string
+        example: "bl" 
+      weight:
+        type: string
+        example: "81 kg"
+      eyes: 
+        type: string
+        example: "bl" 
+      skin: 
+        type: string
+        example: "bl" 
+      hair: 
+        type: string
+        example: "bl" 
+      picturePlaceholder: 
+        type: string
+        example: "bl" 
+      alliedOrganizations: 
+        type: string
+        example: "bl" 
+      allies: 
+        type: string
+        example: "bl" 
+      backStory: 
+        type: string
+        example: "bl" 
+      addfeatTraits: 
+        type: string
+        example: "bl" 
+      treasure: 
+        type: string
+        example: "bl" 
+      spellClass: 
+        type: string
+        example: "bl" 
+      spellAbility: 
+        type: string
+        example: "bl" 
+      spellsaveDC:
+        type: string
+        example: "bl"
+      spellBonus:
+        type: string
+        example: "bl"
+      cantrips: 
+        type: string
+        example: "bl" 
+      lvl1Spellslots:
+        type: string
+        example: "bl"
+      lvl1Prepspells:
+        type: string
+        example: "bl" 
+      lvl1Expended:
+        type: string
+        example: "bl"
+      lvl2Spellslots:
+        type: string
+        example: "bl"
+      lvl2Prepspells: 
+        type: string
+        example: "bl" 
+      lvl2Expended:
+        type: string
+        example: "bl"
+      lvl3Spellslots:
+        type: string
+        example: "bl"
+      lvl3Prepspells: 
+        type: string
+        example: "bl" 
+      lvl3Expended:
+        type: string
+        example: "bl"
+      lvl4Spellslots:
+        type: string
+        example: "bl"
+      lvl4Prepspells: 
+        type: string
+        example: "bl" 
+      lvl4Expended:
+        type: string
+        example: "bl"
+      lvl5Spellslots:
+        type: string
+        example: "bl"
+      lvl5Prepspells: 
+        type: string
+        example: "bl" 
+      lvl5Expended:
+        type: string
+        example: "bl"
+      lvl6Spellslots:
+        type: string
+        example: "bl"
+      lvl6Prepspells: 
+        type: string
+        example: "bl" 
+      lvl6Expended:
+        type: string
+        example: "bl"
+      lvl7Spellslots:
+        type: string
+        example: "bl"
+      lvl7Prepspells:
+        type: string
+        example: "bl" 
+      lvl7Expended:
+        type: string
+        example: "bl"
+      lvl8Spellslots:
+        type: string
+        example: "bl"
+      lvl8Prepspells: 
+        type: string
+        example: "bl" 
+      lvl8Expended:
+        type: string
+        example: "bl"
+      lvl9Spellslots:
+        type: string
+        example: "bl"
+      lvl9Prepspells: 
+        type: string
+        example: "bl" 
+      lvl9Expendedlvl9:
+        type: string
+        example: "bl"
+    
+host: "dndpagemaker.herokuapp.com"
+basePath: /api
+schemes:
+- https
+
+    
+    
+    
+    
+    
+    
+
+
+
+

@@ -10,7 +10,6 @@ const Register = () =>
 {
     return(
         <div>
-            <Scroll />
             <PageTitle />
             <RegisterUI />
         </div>

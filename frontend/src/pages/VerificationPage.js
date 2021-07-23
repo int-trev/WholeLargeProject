@@ -10,10 +10,8 @@ const Verifyy = () =>
 {
     return(
         <div>
-            <Scroll />
             <PageTitle />
             <VerifyUI />
-            <p>hello</p>
         </div>
     );
 }
