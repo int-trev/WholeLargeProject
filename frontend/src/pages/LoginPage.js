@@ -6,11 +6,6 @@ import Login from '../components/Login';
 import Scroll from '../components/Scroll';
 
 
-function getNewUser()
-{
-  window.location.href = '/register'
-}
-
 const LoginPage = () =>
 {
 
@@ -18,8 +13,6 @@ const LoginPage = () =>
       <div>
         <PageTitle />
         <Login />
-        <p>Don't have an account? Create one here!</p>
-        <button  onClick={getNewUser}>Sign Up Here!</button>
       </div>
     );
 };

@@ -408,9 +408,9 @@ exports.setApp = function ( app, client )
         fn = results[0].FirstName;
         ln = results[0].LastName;
         
-        /*if (results[0].verification == false)
+        if (results[0].verification === false)
         {
-          ret = {error:"email Not verified"};
+          ret = {error:"User not verified"};
         }
         else
         {
@@ -423,7 +423,6 @@ exports.setApp = function ( app, client )
             ret = {error:e.message};
           }
         }
-        */
        try
        {
          ret = token.createToken( fn, ln, id );

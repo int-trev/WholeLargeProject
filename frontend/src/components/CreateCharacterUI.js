@@ -7,9 +7,6 @@ function getLanding()
   window.location.href = '/landing';
 }
 
-
-
-
 function CreateCharacterUI()
 {
 
@@ -317,7 +314,6 @@ function CreateCharacterUI()
         <div id="landingPageDiv">
             <button type="button" 
                 onClick={getLanding}> Return to Landing </button><br />
-            <br />
             <div>
                 <p>Character Name</p>
                 <input type="text" id="searchText" placeholder="Character Name" 
@@ -972,9 +968,11 @@ function CreateCharacterUI()
                 </table>
             </div>
             <div>
-            <button type="button" 
-                onClick={addCharacter}> Add Character </button><br />
+            <button type="button" onClick={addCharacter}> Add Character </button><br />
+            <span>{message}</span>
             </div>
+            <br />
+            <br />
         </div>
     );
 }

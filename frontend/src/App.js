@@ -8,6 +8,7 @@ import CreateCharacterPage from './pages/CreateChar';
 import Register from './pages/Register';
 import PasswordReset from './pages/PasswordResetPage';
 import Verification from './pages/VerificationPage';
+import Email from './pages/EmailPage'
 
 
 
@@ -38,6 +39,10 @@ function App() {
 
         <Route path = "/register" exact>
           <Register />
+        </Route>
+
+        <Route path = "/emailpage" exact>
+          <Email />
         </Route>
 
         <Redirect to="/" />

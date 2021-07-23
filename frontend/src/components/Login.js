@@ -10,50 +10,15 @@ function Login()
 
     var loginName;
     var loginPassword;
-    var email;
     var hashing = require('../md5.js');
 
     const [message,setMessage] = useState('');
 
-
-    //make event to create security code
-    const sendPasswordEmail = async event =>
+    function getNewUser()
     {
-        event.preventDefault();
-        console.log(email.value);
-        var sc = Math.floor((Math.random() * 8999) + 1000);
-        var obj = {email: email.value, securityCode: sc};
-        var js = JSON.stringify(obj);
-
-        var config = 
-        {
-            method: 'post',
-            url: bp.buildPath('api/passwordResetEmail'),	
-            headers: 
-            {
-                'Content-Type': 'application/json'
-            },
-            data: js
-        };
-
-        axios(config)
-            .then(function (response) 
-        {
-            var res = response.data;
-            if (res.error) 
-            {
-                setMessage('Email is not mapped to an account');
-            }
-            else 
-            {	
-                setMessage('Email sent');
-            }
-        })
-        .catch(function (error) 
-        {
-            console.log(error);
-        });
+    window.location.href = '/register'
     }
+
 
     const doLogin = async event => 
     {
@@ -112,12 +77,11 @@ function Login()
         <span id="inner-title">PLEASE LOG IN</span><br />
         <input type="text" id="loginName" placeholder="Username" ref={(c) => loginName = c}  /><br />
         <input type="password" id="loginPassword" placeholder="Password" ref={(c) => loginPassword = c} /><br />
-        <button  onClick={doLogin}>Login</button> <br /> <br />
-        <span id="loginResult">{message}</span>
-        <p>Forgot your password?</p>
-        <p>Provide your email to reset.</p>
-        <input type="text" id="email" placeholder="Email" ref={(c) => email = c} /><br />
-        <button  onClick={sendPasswordEmail}>Send Email</button> 
+        <button  onClick={doLogin}>Login</button> <br />
+        <span id="loginResult">{message}</span> <br />
+        <a href="/emailpage">Forgot your password?</a>
+        <p>Don't have an account? Create one here!</p>
+        <button  onClick={getNewUser}>Sign Up Here!</button>
      </div>
     );
 };

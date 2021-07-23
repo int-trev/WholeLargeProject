@@ -72,7 +72,7 @@ function PasswordReset()
             <input type="text" id="code" placeholder="Security Code" ref={(c) => securityCode = c}  /><br />
             <input type="password" id="loginPassword" placeholder="New Password" ref={(c) => loginPassword = c} /><br />
             <input type="password" id="loginPassword" placeholder="Confirm Password" ref={(c) => confimedPassword = c} /><br />
-            <button onClick={doReset}>Reset Password</button>
+            <button onClick={doReset}>Reset Password</button> <br />
             <span id="loginResult">{message}</span>
         </div>
         );

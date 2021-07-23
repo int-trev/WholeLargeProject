@@ -46,7 +46,7 @@ function Register()
             }
             else 
             {	
-                setMessage("Cool");
+                setMessage("User has been added to our database");
             }
         })
         .catch(function (error) 
@@ -63,7 +63,7 @@ function Register()
         <input type="text" id="fName" placeholder="First Name" ref={(c) => firstName = c}  /><br />
         <input type="text" id="lName" placeholder="Last Name" ref={(c) => lastName = c}  /><br />
         <input type="text" id="email" placeholder="Email" ref={(c) => email = c}  /><br />
-        <button onClick={doRegister}>Register</button>
+        <button onClick={doRegister}>Register</button> <br />
         <span id="loginResult">{message}</span>
      </div>
     );

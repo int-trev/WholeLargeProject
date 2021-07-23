@@ -108,14 +108,13 @@ function LandingPageUI()
 
     return(
         <div id="landingPageDiv">
-            <br />
             <p>Want to create a card? Use this button here to do so!</p>
             <button  onClick={getCreate}>Creation</button>
             <br />
             <input type="text" id="searchText" placeholder="Card To Search For" 
                 ref={(c) => search = c} />
-            <span id="cardSearchResult">{searchResults}</span>
              <button  onClick={searchCard}>Search</button>
+             <span id="cardSearchResult">{searchResults}</span>
              <div id="component">
                     <span>{resultss}</span>
              </div>
@@ -483,7 +482,7 @@ class LoginControl extends React.Component {
             }
             else
             {
-                console.log("hi");
+                setMessage("Character Successfully Updated");
                 storage.storeToken({accessToken:retTok});
             }
         })
@@ -529,13 +528,12 @@ class LoginControl extends React.Component {
             }
             else
             {
-                console.log("hi");
+                setMessage(res.error);
                 storage.storeToken({accessToken:retTok});
             }
         })
         .catch(function (error) 
         {
-            console.log("hewooo");
             console.log(error);
         });
 
@@ -1215,6 +1213,7 @@ class LoginControl extends React.Component {
             <div>
             <button  onClick={updateCharacter}> Update Character </button>
             <button  onClick={deleteCharacter}> Delete Character </button>
+            <span>{message}</span>
             </div>
             <div>
           
