@@ -15,6 +15,11 @@ function Verification()
     var confimedPassword;
     var securityCode;
 
+    function returnLogin()
+    {
+    window.location.href = '/'
+    }
+
     const [message,setMessage] = useState('');
 
     const doVerification = async event => 
@@ -58,12 +63,13 @@ function Verification()
     }
         return(
         <div className="loginDiv">
+            <button onClick={returnLogin}>Return to Landing</button><br />
             <span id="inner-title">VERIFY YOUR ACCOUNT</span><br />
             <input type="text" id="loginName" placeholder="Username" ref={(c) => loginName = c}  /><br />
             <input type="password" id="loginPassword" placeholder="Password" ref={(c) => loginPassword = c} /><br />
             <input type="text" id="email" placeholder="Email" ref={(c) => email = c}  /><br />
             <input type="text" id="code" placeholder="Security Code" ref={(c) => securityCode = c}  /><br />
-            <button  onClick={doVerification}>Verify</button>
+            <button  onClick={doVerification}>Verify</button> <br />
             <span id="loginResult">{message}</span>
         </div>
         );
