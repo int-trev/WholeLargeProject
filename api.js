@@ -47,15 +47,10 @@ exports.setApp = function ( app, client )
         {
             try {        
                 const result = await db.collection('DnD').deleteOne(myQuery);
-                  if(result.deletedCount == 1)
+                  if(result.deletedCount != 1)
                   {
-                    error = "Character successfully  (•_•) ( •_•)>⌐■-■ (⌐■_■)  TERMINATED!  ";
-                  }
-                  else
-                  {
-                    error = "Character could not be found"
-                  }
-                
+                    error = "Character could not be found.";
+                  }          
                 }  
               catch(e)
                 {    
@@ -423,14 +418,6 @@ exports.setApp = function ( app, client )
             ret = {error:e.message};
           }
         }
-       try
-       {
-         ret = token.createToken( fn, ln, id );
-       }
-       catch(e)
-       {
-         ret = {error:e.message};
-       }
       }
       else
       {

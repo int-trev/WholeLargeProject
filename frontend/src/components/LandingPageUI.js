@@ -522,13 +522,13 @@ class LoginControl extends React.Component {
             var retTok = res.jwtToken;
             console.log(retTok);
     
-            if( res.error != "Character successfully  (•_•) ( •_•)>⌐■-■ (⌐■_■)  TERMINATED!   ")
+            if(res.error)
             {
                 setMessage( "API Error:" + res.error );
             }
             else
             {
-                setMessage(res.error);
+                setMessage("Character successfully  (•_•) ( •_•)>⌐■-■ (⌐■_■)  TERMINATED!");
                 storage.storeToken({accessToken:retTok});
             }
         })
