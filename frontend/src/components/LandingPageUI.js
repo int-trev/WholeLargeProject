@@ -36,7 +36,18 @@ function LandingPageUI()
         event.preventDefault();
         		
         var tok = storage.retrieveToken();
-        var obj = {userId:userId,search:search.value,jwtToken:tok};
+
+        var str;
+        
+        if(search.value != null)
+        {
+            str = search.value.toLowerCase();
+        }
+        else
+        {
+            str = search.value
+        }
+        var obj = {userId:userId,search:str,jwtToken:tok};
         var js = JSON.stringify(obj);
 
         var config = 

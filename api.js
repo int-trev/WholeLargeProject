@@ -276,7 +276,7 @@ exports.setApp = function ( app, client )
       var _search = search.trim();
       
       const db = client.db();
-      const results = await db.collection('DnD').find({"characterName":{$regex:_search+'.*', $options:'r'}}).toArray();
+      const results = await db.collection('DnD').find({"characterName":{$regex:_search+'.*', $options:'r'}, UserId : userId}).toArray();
       
       console.log(results.length);
       var _ret = [];

@@ -145,7 +145,6 @@ function CreateCharacterUI()
     var search = '';
 
     const [message,setMessage] = useState('');
-
     var _ud = localStorage.getItem('user_data');
     var ud = JSON.parse(_ud);
     var userId = ud.id;
@@ -154,16 +153,29 @@ function CreateCharacterUI()
     userName = firstName + " " + lastName;
 
 
+
+
     const addCharacter = async event => 
     {
 	    event.preventDefault();
 
         var tok = storage.retrieveToken();
+
+        var str;
+
+        if(characterName.value != null)
+        {
+            str = characterName.value.toLowerCase();
+        }
+        else
+        {
+            str = characterName.value;
+        }
         var obj = 
             {
                 userId:userId,
                 userName:userName,        
-                characterName:characterName.value,
+                characterName:str,
                 class1:class1.value,
                 class1Lvl:class1Lvl.value,
                 class2:class2.value,
