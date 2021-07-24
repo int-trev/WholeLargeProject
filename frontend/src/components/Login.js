@@ -45,7 +45,7 @@ function Login()
             var res = response.data;
             if (res.error) 
             {
-                setMessage('User/Password combination incorrect or user not verified');
+                setMessage(res.error);
             }
             else 
             {	
