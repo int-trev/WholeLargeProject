@@ -102,6 +102,7 @@ function CreateCharacterUI()
     var skin = ''; 
     var hair = ''; 
     var picturePlaceholder = ''; 
+    var pic = "not implemented yet";
     var alliedOrganizations = ''; 
     var allies = ''; 
     var backStory = ''; 
@@ -246,7 +247,7 @@ function CreateCharacterUI()
                 eyes:eyes.value, 
                 skin:skin.value, 
                 hair:hair.value, 
-                picturePlaceholder:picturePlaceholder.value, 
+                picturePlaceholder:pic,
                 alliedOrganizations:alliedOrganizations.value, 
                 allies:allies.value, 
                 backStory:backStory.value, 
@@ -546,15 +547,6 @@ function CreateCharacterUI()
                     ref={(c) => wisSave = c} />
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                        <p>Cha Save</p>
-                        </td>
-                        <td>
-                        <input type="text" id="searchText" placeholder="Cha Save" 
-                    ref={(c) => chaSave = c} />
-                        </td>
-                    </tr>
                 </table>
 
             </div>
@@ -758,9 +750,9 @@ function CreateCharacterUI()
                     ref={(c) => hair = c} /> 
                         </td>
                         <td>
-                        <p>Picture Placeholder</p>
-                <input type="text" id="searchText" placeholder="Picture Placeholder" 
-                    ref={(c) => picturePlaceholder = c} />  
+                        <p>Backstory</p>
+                <input type="text"   placeholder="Backstory" defaultValue={props.obj.backStory}
+                    ref={(c) => backStory = c} />  
                         </td>
                         <td>
                         <p>Allied Organizations</p>

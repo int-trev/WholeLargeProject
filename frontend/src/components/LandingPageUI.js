@@ -293,6 +293,7 @@ class LoginControl extends React.Component {
     var skin = ''; 
     var hair = ''; 
     var picturePlaceholder = ''; 
+    var pic = 'not implemented yet';
     var alliedOrganizations = ''; 
     var allies = ''; 
     var backStory = ''; 
@@ -427,7 +428,7 @@ class LoginControl extends React.Component {
                 eyes:eyes.value, 
                 skin:skin.value, 
                 hair:hair.value, 
-                picturePlaceholder:picturePlaceholder.value, 
+                picturePlaceholder:pic, 
                 alliedOrganizations:alliedOrganizations.value, 
                 allies:allies.value, 
                 backStory:backStory.value, 
@@ -779,15 +780,6 @@ class LoginControl extends React.Component {
                     ref={(c) => wisSave = c} />
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                        <p>Cha Save</p>
-                        </td>
-                        <td>
-                        <input type="text"   placeholder="Cha Save" defaultValue={props.obj.chaSave}
-                    ref={(c) => chaSave = c} />
-                        </td>
-                    </tr>
                     </tbody>
                 </table>
 
@@ -997,9 +989,9 @@ class LoginControl extends React.Component {
                     ref={(c) => hair = c} /> 
                         </td>
                         <td>
-                        <p>Picture Placeholder</p>
-                <input type="text"   placeholder="Picture Placeholder" defaultValue={props.obj.picturePlaceholder}
-                    ref={(c) => picturePlaceholder = c} />  
+                        <p>Backstory</p>
+                <input type="text"   placeholder="Backstory" defaultValue={props.obj.backStory}
+                    ref={(c) => backStory = c} />  
                         </td>
                         <td>
                         <p>Allied Organizations</p>
@@ -1012,11 +1004,6 @@ class LoginControl extends React.Component {
                         <p>Allies</p>
                 <input type="text"   placeholder="Allies" defaultValue={props.obj.allies}
                     ref={(c) => allies = c} />  
-                        </td>
-                        <td>
-                        <p>Backstory</p>
-                <input type="text"   placeholder="Backstory" defaultValue={props.obj.backStory}
-                    ref={(c) => backStory = c} />  
                         </td>
                         <td>
                         <p>Add Feat Traits</p>
