@@ -38,7 +38,7 @@ function LandingPageUI()
         var tok = storage.retrieveToken();
 
         var str;
-        
+
         if(search.value != null)
         {
             str = search.value.toLowerCase();
@@ -119,10 +119,10 @@ function LandingPageUI()
 
     return(
         <div id="landingPageDiv">
-            <p>Want to create a card? Use this button here to do so!</p>
+            <p>Want to create a character? Use this button here to do so!</p>
             <button  onClick={getCreate}>Creation</button>
             <br />
-            <input type="text" id="searchText" placeholder="Card To Search For" 
+            <input type="text" id="searchText" placeholder="Character To Search For" 
                 ref={(c) => search = c} />
              <button  onClick={searchCard}>Search</button>
              <span id="cardSearchResult">{searchResults}</span>
