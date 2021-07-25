@@ -56,10 +56,6 @@ exports.setApp = function ( app, client )
                 {    
                     error = e.toString();  
                 }
-        
-                var ret = { error: error,};
-                res.status(200).json(ret);
-    
         }
     
         var refreshedToken = null;
@@ -72,7 +68,7 @@ exports.setApp = function ( app, client )
             console.log(e.message);
           }
         
-          var ret = { results:_ret, error: error, jwtToken: refreshedToken };
+          var ret = {error: error, jwtToken: refreshedToken };
           
           res.status(200).json(ret);
           
