@@ -51,7 +51,7 @@ function Register()
             }
             else 
             {	
-                setMessage("User has been added to our database");
+                setMessage("Check email for verification process.");
             }
         })
         .catch(function (error) 

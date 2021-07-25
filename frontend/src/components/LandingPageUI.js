@@ -97,10 +97,10 @@ function LandingPageUI()
               }
               else
               {
-                setResultList("None here mate");
+                setResultList("No characters created. You should make some!");
               }
                 
-              setResults('Card(s) have been retrieved');
+              setResults('Character(s) have been retrieved');
 
               //setCardList(resultText);
               storage.storeToken( {accessToken:retTok} );
