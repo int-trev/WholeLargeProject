@@ -48,13 +48,13 @@ function PasswordReset()
                 .then(function (response) 
             {
                 var res = response.data;
-                if (res.error == "Duplicate username and/or password detected") 
+                if (res.error) 
                 {
                     setMessage(res.error);
                 }
                 else 
                 {	
-                setMessage("User is now verified")
+                    setMessage("Password is now changed");
                 }
             })
             .catch(function (error) 

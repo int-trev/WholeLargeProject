@@ -689,6 +689,10 @@ exports.setApp = function ( app, client )
         const {email, securityCode} = req.body;
 
         var sc = "sc(" + securityCode + ")";
+
+        const userUpdate = {
+          "SecurityCode": sc
+        };
         
         var error = '';
     
@@ -702,6 +706,7 @@ exports.setApp = function ( app, client )
           }
           else
           {
+            db.collection('Users').updateOne( {Email:email}, {$set:userUpdate});
             var transporter =
               nodemailer.createTransport({
                   service: 'gmail',
