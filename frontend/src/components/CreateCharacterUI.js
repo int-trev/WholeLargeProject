@@ -766,6 +766,7 @@ function CreateCharacterUI()
                 <input type="text" id="searchText" placeholder="Allies" 
                     ref={(c) => allies = c} />  
                         </td>
+                        <td>
                         <p>Add Feat Traits</p>
                 <input type="text" id="searchText" placeholder="Add Feat Traits" 
                     ref={(c) => addfeatTraits = c} /> 
