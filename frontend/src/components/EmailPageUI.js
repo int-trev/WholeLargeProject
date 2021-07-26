@@ -60,7 +60,7 @@ function Email()
 
     return(
       <div className = "loginDiv">
-        <button onClick={returnLogin}>Return to Landing</button><br />
+        <button onClick={returnLogin}>Return to Login</button><br />
         <p>No need to worry! Provide an email and we will send a code and link!</p>
         <input type="text" id="email" placeholder="Email" ref={(c) => email = c} /><br />
         <button  onClick={sendPasswordEmail}>Send Email</button> <br />

@@ -62,7 +62,7 @@ function Register()
 
     return(
       <div className = "loginDiv">
-        <button onClick={returnLogin}>Return to Landing</button><br />
+        <button onClick={returnLogin}>Return to Login</button><br />
         <span id="inner-title">PLEASE REGISTER</span><br />
         <input type="text" id="loginName" placeholder="Username" ref={(c) => loginName = c}  /><br />
         <input type="password" id="loginPassword" placeholder="Password" ref={(c) => loginPassword = c} /><br />

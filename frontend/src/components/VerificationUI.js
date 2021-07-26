@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 
+
 function Verification()
 {
 
@@ -15,10 +16,12 @@ function Verification()
     var confimedPassword;
     var securityCode;
 
+      
     function returnLogin()
     {
-    window.location.href = '/'
+        window.location.href = '/'
     }
+    
 
     const [message,setMessage] = useState('');
 
@@ -29,6 +32,7 @@ function Verification()
         var hashedPass = hashing(loginPassword.value)
         var obj = {username:loginName.value,password:hashedPass,email:email.value, securityCode: securityCode.value};
         var js = JSON.stringify(obj);
+
         
         
         var config = 
@@ -63,7 +67,7 @@ function Verification()
     }
         return(
         <div className="loginDiv">
-            <button onClick={returnLogin}>Return to Landing</button><br />
+            <button onClick={returnLogin}>Return to Login</button><br />
             <span id="inner-title">VERIFY YOUR ACCOUNT</span><br />
             <input type="text" id="loginName" placeholder="Username" ref={(c) => loginName = c}  /><br />
             <input type="password" id="loginPassword" placeholder="Password" ref={(c) => loginPassword = c} /><br />
