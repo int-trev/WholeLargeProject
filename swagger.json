@@ -1,9 +1,9 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "This is a sample server Petstore server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters.",
+    "description": "This is documentation for the APIs for our website.",
     "version": "1.0.0",
-    "title": "Swagger Petstore",
+    "title": "DnD Page Maker",
     "termsOfService": "http://swagger.io/terms/",
     "contact": {
       "email": "apiteam@swagger.io"
@@ -274,27 +274,28 @@
       "properties": {
         "username": {
           "type": "string",
-          "example": "bl"
+          "example": "TrevLar"
         },
         "password": {
           "type": "string",
-          "example": "bl"
+          "example": "coderperson22"
         },
         "firstName": {
           "type": "string",
-          "example": "bl"
+          "example": "Trevor"
         },
-        "lasrName": {
+        "lastName": {
           "type": "string",
-          "example": "bl"
+          "example": "Larson"
         },
         "email": {
           "type": "string",
-          "example": "bl"
+          "example": "trevor.lar@gmail.com"
         },
         "securityCode": {
           "type": "string",
-          "example": "bl"
+          "example": "sc(1111)",
+          "description" : "Gets created on the frontend as a 4 digit number from 1000-8999 and sent to the API to be turned into a string. This makes it easier to search for formatting wise in the database."
         }
       }
     },
